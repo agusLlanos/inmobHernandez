@@ -1,0 +1,62 @@
+.card{
+    box-shadow:5px 5px 15px gray;
+  }
+  .card:hover{
+    transform: scale(1.15);
+  }
+  
+  .margin-card{
+    margin: auto !important;
+  }
+  
+  .card{
+    width: 250px !important; 
+    height: 380px !important;  
+  }
+  .card-title{
+    font-size: 20px;
+  }
+  .card-body{
+    width: 200px;
+    height: 300px;
+  }
+  #idCard{
+    width: 200px;
+    height: 300px;
+  }
+  #SectionBotones {
+    background-color: #198754;
+    box-shadow: 5px 5px 15px #082409 ;
+  }
+  
+  #eslogan {
+    color: #fff !important;
+    text-shadow: 2px 2px #000 !important;
+    font-size: 10px;
+  }
+  #boton {
+    width: 60%;
+    height: 40px;  
+    color: #FFF !important;
+    box-shadow: rgb(255, 255, 255) !important;
+    font-family: 'Noto Sans Nag Mundari', sans-serif;
+    font-family: 'Raleway', sans-serif;
+    font-family: 'Roboto Mono', monospace;
+    font-family: 'Rubik', sans-serif;
+  }
+  
+  #boton2{
+    height: 40px;
+    width: 60%;  
+    color: #FFF !important;
+    box-shadow: #fff !important;
+    font-family: 'Noto Sans Nag Mundari', sans-serif;
+    font-family: 'Raleway', sans-serif;
+    font-family: 'Roboto Mono', monospace;
+    font-family: 'Rubik', sans-serif;
+  }
+  
+  #botonBuscar {
+    width: 150px;
+    
+  }

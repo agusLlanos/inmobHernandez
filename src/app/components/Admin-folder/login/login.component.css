@@ -1,0 +1,38 @@
+ #cardLogin{
+width: 500px !important; 
+border: 9;
+border: 3px solid #147749;
+box-shadow:8px 8px 15px gray;
+}
+.container{
+    display: flex;
+     align-items: center;
+    justify-content: center;
+} 
+.btn{
+width: 350px;
+}
+.logo{
+    width: 140px;
+}
+.family{
+    font-family: 'Noto Sans Nag Mundari', sans-serif;
+    font-family: 'Playfair Display', serif;
+    font-family: 'Raleway', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Mono', monospace;
+    font-family: 'Rubik', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+#font2{color: #147749;}
+
+form{
+    width: 450px;
+}
+body{
+    background-image: url("/src/assets/imagenes/fondo1.jpg");
+  
+}
+
+
+

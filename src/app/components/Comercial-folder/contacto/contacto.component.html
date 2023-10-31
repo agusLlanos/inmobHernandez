@@ -1,0 +1,72 @@
+<section class="container-fluid border-top border-3" id="sectionContacto">
+    <div class="row">
+      <div class="col col-xs-12" id="idContacto">
+        <div class="fs-4 text-secondary px-5 pt-5 d-flex justify-content-center">Contacto</div>
+      </div>
+      <div class="col col-xs-12 d-flex justify-content-center pt-5" id="idHomepage">
+        <a href="index.html" class="px-2 text-success"><span>Homepage</span></a>
+        <div class="text-secondary fs-6"> Contacto</div>
+      </div>
+    </div>
+  </section>
+  <section class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6 pt-3 d-flex justify-content-center">
+
+        <form (ngSubmit)="onSubmit()" style="width: 800px;">
+
+          <input type="text" class="form-control  mt-4" placeholder="Nombre" id="txtNom" name="nombre" 
+          [(ngModel)]="model.nombre"/> <!-- guarda en model.nombre lo que se ingreso en el input -->
+
+          <input type="text" class="form-control  mt-4" placeholder="Apellido" id="txtApe"
+            name="apellido" [(ngModel)]="model.apellido"/>
+
+          <input type="text" class="form-control  mt-4" placeholder="Telefono" id="txtTel"
+            name="telefono" [(ngModel)]="model.telefono"/>
+
+          <input type="text" class="form-control  mt-4" placeholder="Email" id="txtEmail" 
+          name="email" [(ngModel)]="model.email"/>
+
+          <input type="text" class="form-control  mt-4" placeholder="Asunto" id="txtAsunto"/>
+          <textarea class="form-control   mt-4" rows="5" id="comment" placeholder="Mensaje"></textarea>
+          <!--<input type="submit" class="btn btn-secondary  fs-6 mt-3" id="btnContacto" value="Enviar" /> -->
+           <button type="submit" class="btn btn-secondary  fs-6 mt-3" id="botonContacto">ENVIAR</button>
+           
+        </form>
+
+      </div>
+      <div class="col-lg-6 pt-5 px-5">
+        <div>Rivadavia 547 - San Nicolás de los Arroyos, Bs.As, Argentina</div>
+        <div class="text-success fs-5 pt-3 family" id="horariosId">NUESTROS HORARIOS</div>
+        <div class="pt-2">Lunes a Viernes</div>
+        <div>8:00hs a 17:00hs.</div>
+        <div class="pt-3">
+          <a href="https://api.whatsapp.com/send/?phone=5493364395945&text&app_absent=0">
+            <i class="fa-brands fa-whatsapp fa-lg" style="color: #11472e;" id="iconWsp"></i>
+            <span class="text-black fs-9 px-2">+549 336 4395945</span>
+          </a><br>
+          <a href="mailto:agustinallanos44@gmail.com">
+            <i class="fa-solid fa-envelope fa-lg" style="color: #680f0f;"></i>
+            <span class="text-black fs-9 px-2">hernandezinmob@gmail.com</span>
+          </a>
+          <div class="pt-4">
+            <a href="https://www.instagram.com/agusllanos_/" class="px-2">
+              <i class="fa-brands fa-square-instagram fa-xl" style="color: #cc3847;"></i>
+            </a>
+            <a href="https://www.facebook.com/AgusLlanoos">
+              <i class="fa-brands fa-square-facebook fa-xl" style="color: #1e4280;"></i>
+            </a>
+          </div>
+          <div class=""><img src="../assets/imagenes/contacto2.png" alt="" style="width: 100%;"
+              class="rounded-top pt-3 imgContactofoto" id="imgContacto"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4291.585136597917!2d-60.206193629985215!3d-33.33855379690298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b75d797033c9f9%3A0x6a8f3703b02bc5d7!2sRivadavia%20547%2C%20San%20Nicol%C3%A1s%20de%20Los%20Arroyos%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1685497551372!5m2!1ses-419!2sar"
+        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+  </section>

@@ -1,0 +1,206 @@
+<div class="containter" id="botonFijo">
+  <a href="https://api.whatsapp.com/send/?phone=5493364395945&text&app_absent=0" class="px-1"
+    style="padding-top: 10px;">
+    <img src="../assets/imagenes/logowsp.webp" alt="" width="50">
+  </a>
+</div>
+<header>
+  <div class="container-fluid bg-success">
+    <div class="row">
+      <div class="col-2 col-md-3 col-sm-2 col-xs-6 p-2 " id="redes">
+        <a href="https://www.instagram.com/agusllanos_/">
+          <i class="fa-brands fa-square-instagram fa-2xl px-2" style="color: #d3224e;"></i>
+        </a>
+        <a href="https://www.facebook.com/AgusLlanoos">
+          <i class="fa-brands fa-square-facebook fa-2xl px-2" style="color: #33538a;"></i>
+        </a>
+      </div>
+      <div class=" col-10 col-md-9 col-sm-10 col-xs-6 d-flex justify-content-end" style="padding-top: 10px;" id="wsp">
+        <a href="https://api.whatsapp.com/send/?phone=5493364395945&text&app_absent=0" class="px-4">
+          <i class="fa-brands fa-whatsapp fa-lg" style="color: #ffffff;"></i>
+          <span class="text-light fs-9 nav1 px-2">+549 336 4395945</span>
+        </a>
+        <a href="mailto:agustinallanos44@gmail.com">
+          <i class="fa-solid fa-envelope fa-lg" style="color: #ffffff;"></i>
+          <span class="text-light fs-9 nav1 px-2">hernandezinmob@gmail.com</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+<!--BARRA DE NAVEGACION-->
+<div class="containter-fluid">
+  <nav class="navbar navbar-expand-lg navbar-light " id="menu">
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler"
+      aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="row">
+      <div class="col col-xl-5 col-lg-5 col-sm-12">
+        <div class="collapse navbar-collapse" id="navbar-toggler">
+          <a class="navbar-brand d-flex px-5" href="index.html" id="logoIndex">
+            <img src="../assets/imagenes/logo-2.png" width="150" alt='image' alt="Logo de la pagina web"
+              id="imgFotoLogo">
+            <div id="font-Nombre">INMOBILIARIA </div> <br>
+            <div id="font-nombre2">HERNÁNDEZ</div>
+          </a>
+        </div>
+      </div>
+      <div class="col col-xl-7 col-lg-7 col-sm-12" id="clase1">
+        <div class="collapse navbar-collapse pt-5" id="navbar-toggler">
+          <ul class="navbar-nav d-flex align-items-center " id="ulBarraNav">
+            <li class="nav-item section__li d-flex align-items-center" id=""><i class="fa-solid fa-house"></i><a
+                class="nav-link active family fs-5" aria-current="page" [routerLink]="'/Comercial/Inicio'"
+                id="inicio">INICIO</a> </li>
+            <li class="nav-item section__li d-flex align-items-center"><i class="fa-solid fa-sign-hanging"
+                style="color: #000000;"></i><a class="nav-link active family fs-5"
+                [routerLink]="'/Comercial/Vender'">VENDER</a></li>
+            <li class="nav-item section__li d-flex align-items-center"><i class="fa-solid fa-phone-volume"></i><a
+                class="nav-link active family fs-5" [routerLink]="'/Comercial/Contacto'">CONTACTO</a></li>
+            <li class="nav-item section__li d-flex align-items-center"><i class="fa-sharp fa-solid fa-users"></i><a
+                class="nav-link active family fs-5" [routerLink]="'/Comercial/AcercaDe'">ACERCA DE</a></li>
+            <li><a [routerLink]="'/Admin'"><button type="button" class="btn btn-outline-success btn-lg mt-3">Iniciar
+                  Sesion</button></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </nav>
+</div>
+
+<!-- FIN BARRA DE NAVEGACION-->
+
+<!-- CONTENEDOR PRINCIPAL -->
+<router-outlet></router-outlet>
+<!-- FIN CONTENEDOR PRINCIPAL -->
+<!--INICIO FOOTER-->
+<footer>
+  <div class="containter-fluid bg-dark text-white pt-4 mt-5 pb-5">
+    <div class="row">
+      <div class="col-4">
+        <a href="index.html" id="logo-Footer"><img src="../assets/imagenes/logo-2.png" width="170" alt=""></a>
+      </div>
+      <div class="col-2" id="footer-ul1">
+        <ul>
+          <li>
+            <i class="fa-solid fa-house"></i>
+            <a href="index.html" class="text-white text-decoration-none px-2"> Inicio</a>
+          </li>
+          <li>
+            <i class="fa-solid fa-sign-hanging" style="color: #FFF;"></i>
+            <a href="venta.html" class="text-white text-decoration-none px-2"> Vender</a>
+          </li>
+          <li>
+            <i class="fa-solid fa-phone-volume"></i>
+            <a href="contacto.html" class="text-white text-decoration-none px-2"> Contacto</a>
+          </li>
+          <li>
+            <i class="fa-sharp fa-solid fa-users"></i>
+            <a href="nosotros.html" class="text-white text-decoration-none px-2"> Acerca de</a>
+          </li>
+
+        </ul>
+      </div>
+      <div class="col-6" id="footer-ul2">
+        <ul>
+          <li>
+            <a href="https://api.whatsapp.com/send/?phone=5493364395945&text&app_absent=0">
+              <i class="fa-brands fa-whatsapp fa-lg" style="color: #ffffff;"></i>
+              <span class="text-light fs-9 px-2">+549 336 4395945</span>
+            </a>
+          </li>
+          <li>
+            <a href="mailto:agustinallanos44@gmail.com">
+              <i class="fa-solid fa-envelope fa-lg" style="color: #ffffff;"></i>
+              <span class="text-light fs-9 px-2">hernandezinmob@gmail.com</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa-solid fa-location-dot fa-lg" style="color: #ffffff;"></i>
+              <span class="text-light fs-9 px-2">Rivadavia 547 - San Nicolas de los Arroyos</span>
+            </a>
+          </li>
+          <li class="pt-4">
+            <a href="https://www.instagram.com/agusllanos_/" class="px-2">
+              <i class="fa-brands fa-instagram fa-2xl" style="color: #ffffff;"></i>
+            </a>
+            <a href="https://www.facebook.com/AgusLlanoos">
+              <i class="fa-brands fa-square-facebook fa-2xl" style="color: #ffffff;"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-12" id="copyright">
+        <p class="text-white text-center pt-5">
+          Copyright - All rights reserved © 2023 | Todos los derechos reservados a www.hernandezinmob.com
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!--
+  <div class="" id="footer">
+    <div class=" p-5 bg-dark text-white">
+      <div class="col-xs-12 col-md-6 col-lg-6 d-flex justify-content-center pt-4" id="logoFooter">
+        <a href="index.html"><img src="../assets/imagenes/logo-2.png" width="170" alt=""></a>
+      </div>
+      <div class="col-xs-12 col-md-6 col-lg-3" id="">
+        <div class="mb-3">
+          <i class="fa-solid fa-house"></i>
+          <a href="index.html" class="text-white text-decoration-none px-2"> Inicio</a>
+        </div>
+        <div class="mb-3 r">
+          <i class="fa-solid fa-sign-hanging" style="color: #FFF;"></i>
+          <a href="venta.html" class="text-white text-decoration-none px-2"> Vender</a>
+        </div>
+        <div class="mb-3 ">
+          <i class="fa-solid fa-phone-volume"></i>
+          <a href="contacto.html" class="text-white text-decoration-none px-2"> Contacto</a>
+        </div>
+        <div class="mb-3">
+          <i class="fa-sharp fa-solid fa-users"></i>
+          <a href="nosotros.html" class="text-white text-decoration-none px-2"> Acerca de</a>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-6 col-lg-3" id="columnaContacto">
+        <p class="h3 text-success">Contacto</p>
+        <div class="pt-2">
+          <a href="https://api.whatsapp.com/send/?phone=5493364395945&text&app_absent=0" class="px-1">
+            <i class="fa-brands fa-whatsapp fa-lg" style="color: #ffffff;"></i>
+            <span class="text-light fs-9">+549 336 4395945</span>
+          </a>
+        </div>
+        <div class="pt-2">
+          <a href="mailto:agustinallanos44@gmail.com">
+            <i class="fa-solid fa-envelope fa-lg" style="color: #ffffff;"></i>
+            <span class="text-light fs-9">hernandezinmob@gmail.com</span>
+          </a>
+        </div>
+        <div class="pt-3">
+          <a href="#">
+            <i class="fa-solid fa-location-dot fa-lg" style="color: #ffffff;"></i>
+            <span class="text-light fs-9">Rivadavia 547 - San Nicolas de los Arroyos</span>
+          </a>
+        </div>
+        <div class="pt-4">
+          <a href="https://www.instagram.com/agusllanos_/" class="px-2">
+            <i class="fa-brands fa-instagram fa-2xl" style="color: #ffffff;"></i>
+          </a>
+          <a href="https://www.facebook.com/AgusLlanoos">
+            <i class="fa-brands fa-square-facebook fa-2xl" style="color: #ffffff;"></i>
+          </a>
+        </div>
+      </div>
+      <div class="col-xs-12" id="copyright">
+        <p class="text-white text-center pt-5">
+          Copyright - All rights reserved © 2023 | Todos los derechos reservados a www.hernandezinmob.com
+        </p>
+      </div>
+    </div>
+  </div>
+
+FIN FOOTER-->

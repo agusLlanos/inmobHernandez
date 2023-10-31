@@ -1,0 +1,354 @@
+<h3 class="font-">
+  Nuevo Inmueble
+</h3>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item">Inmuebles</li>
+    <li class="breadcrumb-item active" aria-current="page">Nuevo inmueble</li>
+  </ol>
+</nav>
+
+
+<section>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-tittle font- mb-4">
+            Carga de nuevo inmueble
+          </h5>
+          <div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="form-check-label" for="flexCheckChecked">
+                  Tipo inmueble
+                </label>
+                <select [(ngModel)]="model.id_tipoInmueble" class="form-select form-select-sm mt-2">
+                  <option selected>Seleccione...</option>
+                  <option value=1>Casa</option>
+                  <option value=2>Departamento</option>
+                  <option value=3>Lote</option>
+                  <option value=4>Galpón</option>
+                  <option value=5>Local</option>
+                  <option value=6>Campo</option>
+                </select>
+              </div>
+
+              <div class=" col-sm-4">
+                <label class="form-check-label" for="flexCheckChecked">
+                  Motivo
+                </label>
+                <select [(ngModel)]="model.id_motivo" class="form-select form-select-sm mt-2"
+                  aria-label="Default select example" title="Motivo">
+                  <option selected>Seleccione...</option>
+                  <option value="1">Venta</option>
+                  <option value="2">Alquiler</option>
+                </select>
+              </div>
+
+              <div class="col-sm-4 ">
+                <label class="form-check-label" for="flexCheckChecked">
+                  Fecha de Ingreso
+                </label>
+                <input [(ngModel)]="model.fecha_ingreso" id="startDate" class="form-control form-control-sm mt-2"
+                  type="date" [(ngModel)]="dateToday" />
+                <span id="startDateSelected"></span>
+              </div>
+
+            </div>
+            <div class="row g-3 mt-3">
+              <label for="exampleFormControlInput1" class="form-label font-">Ubicación</label>
+              <div class="col-sm-5 ">
+                <input type="text" class="form-control form-control-sm mb-2 " id="calle" placeholder="Calle"
+                  name="calle" [(ngModel)]="model.calle">
+              </div>
+              <div class="col-sm-2 ">
+                <input type="text" class="form-control form-control-sm mb-2" id="numero" placeholder="numero"
+                  name="numero" [(ngModel)]="model.numero">
+              </div>
+              <div class="col-sm-5 ">
+                <select class="form-select form-select-sm" aria-label="Default select example"
+                  [(ngModel)]="model.id_ciudad">
+                  <option selected>Ciudad</option>
+                  <option value=1>San Nicolas</option>
+                  <option value=2>Villa constitucion</option>
+                </select>
+              </div>
+            </div>
+            <div class="row g-3 mt-3" id="div-medio">
+              <div class="col col-sm-4 col-xxl-4">
+                <label for="exampleFormControlInput1" class="form-label font-">Cuenta con</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
+                    [(ngModel)]="model.patio">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Patio
+                  </label>    
+                </div>                                                        
+                                             
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                    [(ngModel)]="model.cochera">
+                  <label class="form-check-label" for="flexCheckChecked">
+                    Cochera
+                  </label>
+                </div>
+
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                    [(ngModel)]="model.balcon">
+                  <label class="form-check-label" for="flexCheckChecked">
+                    Balcon
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                    [(ngModel)]="model.comedor">
+                  <label class="form-check-label" for="flexCheckChecked">
+                    Comedor
+                  </label>
+                </div>
+
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                    [(ngModel)]="model.cocina">
+                  <label class="form-check-label" for="flexCheckChecked">
+                    Cocina
+                  </label>
+                </div>
+                
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                    [(ngModel)]="model.terraza">
+                  <label class="form-check-label" for="flexCheckChecked">
+                    Terraza
+                  </label>
+                </div>
+                <input type="number" class="form-control form-control-sm mt-3" id="hab"
+                  placeholder="Cantidad habitaciones" name="hab" [(ngModel)]="model.cant_habit"> 
+              </div>
+              <div class="col col-sm-4 col-xxl-4" id="column-servicios">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                    [(ngModel)]="model.cloaca">
+                  <label class="form-check-label" for="flexCheckChecked">
+                    Cloaca
+                  </label>
+                </div>
+
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                    [(ngModel)]="model.lavadero">
+                  <label class="form-check-label" for="flexCheckChecked">
+                    Lavadero
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                    [(ngModel)]="model.living">
+                  <label class="form-check-label" for="flexCheckChecked">
+                    Living
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                    [(ngModel)]="model.ascensor">
+                  <label class="form-check-label" for="flexCheckChecked">
+                    Ascensor
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                    [(ngModel)]="model.aire_acond">
+                  <label class="form-check-label" for="flexCheckChecked">
+                    Aire acond.
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                    [(ngModel)]="model.amoblado">
+                  <label class="form-check-label" for="flexCheckChecked">
+                    Amoblado
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                    [(ngModel)]="model.pileta">
+                  <label class="form-check-label" for="flexCheckChecked">
+                    Pileta
+                  </label>
+                </div>
+                <input type="number" class="form-control form-control-sm mt-3" id="banios" placeholder="Cantidad baños"
+                  name="banios" [(ngModel)]="model.cant_banios">
+              </div>
+              <div class="col col-sm-2" id="servicios">
+                <label for="exampleFormControlInput1" class="form-label font-">Servicios</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                    [(ngModel)]="model.agua">
+                  <label class="form-check-label" for="flexCheckChecked">
+                    Agua
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                    [(ngModel)]="model.gas">
+                  <label class="form-check-label" for="flexCheckChecked">
+                    Gas
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                    [(ngModel)]="model.calefaccion">
+                  <label class="form-check-label" for="flexCheckChecked">
+                    Calefacción
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                    [(ngModel)]="model.luz">
+                  <label class="form-check-label" for="flexCheckChecked">
+                    Luz
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-4 mt-5">
+                <label class="form-check-label" for="flexCheckChecked">
+                  Antigüedad
+                </label>
+                <input type="text" class="form-control form-control-sm mt-2" id="antiguedad" placeholder=""
+                  name="antiguedad" [(ngModel)]="model.antiguedad">
+              </div>
+
+              <div class="col-sm-4 mt-5">
+                <label class="form-check-label" for="flexCheckChecked">
+                  Medidas lote
+                </label>
+                <input type="text" class="form-control form-control-sm mt-2" id="medidas_lote" placeholder=""
+                  name="medidas_lote" [(ngModel)]="model.medidas_lote">
+              </div>
+            </div>
+
+            <div class="row g-3 mt-3">
+              <span class="font-">Observaciones</span>
+              <div class="col col-sm-12 px-3">
+                <div class="mb-3">
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                    [(ngModel)]="model.observaciones"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 pt-3">
+                <button type="submit" class="btn btn-success" (click)="onSubmit()">Guardar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-tittle font2- pb-3">
+            Datos propietario
+          </h5>
+          <div class="row">
+            <div class="col-sm-12 pb-3">
+              <div class="form-check px-3 radios">
+                <input class="form-check-input" (change)="onChange(valorRadio)" type="radio" value="nuevo"
+                  [(ngModel)]="valorRadio">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Nuevo
+                </label>
+              </div>
+              <div class="form-check radios">
+                <input class="form-check-input" type="radio" value="existe" [(ngModel)]="valorRadio"
+                  (change)="onChange(valorRadio)">
+                <label class="form-check-label" for="flexRadioDefault2">
+                  Existente
+                </label>
+              </div>
+            </div>
+          </div>
+          <ng-container *ngIf="valorRadioButton == 'nuevo'">
+            <div class="row g-3 pb-3">
+              <div class="col-sm-3">
+                <label for="inputEmail4" class="form-label">Nombre</label>
+              </div>
+              <div class="col-sm-9">
+                <input type="text" class="form-control form-control-sm mb-2 " id="nombre" name="nombre"
+                  [(ngModel)]="model.nombre">
+              </div>
+            </div>
+            <div class="row pb-3">
+              <div class="col-sm-3">
+                <label for="inputEmail4" class="form-label">Apellido</label>
+              </div>
+              <div class="col-sm-9">
+                <input type="text" class="form-control form-control-sm mb-2 " id="apellido" name="apellido"
+                  [(ngModel)]="model.apellido">
+              </div>
+            </div>
+            <div class="row pb-3">
+              <div class="col-sm-3">
+                <label for="inputEmail4" class="form-label">DNI</label>
+              </div>
+              <div class="col-sm-4">
+                <input type="number" class="form-control form-control-sm mb-2 " id="dni" name="dni" value=" "
+                  [(ngModel)]="model.dni">
+              </div>
+            </div>
+
+            <div class="row pb-3">
+              <div class="col-sm-3">
+                <label for="inputEmail4" class="form-label">Telefono</label>
+              </div>
+              <div class="col-sm-9">
+                <input type="text" class="form-control form-control-sm mb-2 " id="telefono" name="telefono"
+                  [(ngModel)]="model.telefono">
+              </div>
+            </div>
+            <div class="row pb-3">
+              <div class="col-sm-3">
+                <label for="inputEmail4" class="form-label">Fecha Nac.</label>
+              </div>
+              <div class="col-sm-5 ">
+                <input id="fecha_nac" class="form-control form-control-sm" type="date" [(ngModel)]="model.fecha_nac" />
+              </div>
+            </div>
+            <div class="row pb-3">
+              <div class="col-sm-3">
+                <label for="inputEmail4" class="form-label">Email</label>
+              </div>
+              <div class="col-sm-9">
+                <input type="text" class="form-control form-control-sm mb-2 " id="email" name="email"
+                  [(ngModel)]="model.email">
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="valorRadioButton == 'existe'">
+            <div class="col-sm-12 ">
+              <select class="form-select form-select-sm" aria-label="Default select example" [(ngModel)]="model.id_propietario">
+                <option value={{prop.id_propietario}} *ngFor="let prop of propietarios">
+                  {{prop.apeNom}}
+                </option>                
+              </select>
+            </div>
+          </ng-container>
+           <button type="submit" class="btn btn-success" >Prueba</button> 
+           <app-modal [title]="'Usuario registrado'" #modal >
+            
+           </app-modal>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

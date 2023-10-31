@@ -1,0 +1,45 @@
+
+<ng-template #content let-modal>
+ <div class="modalc">
+    <div class="modalc-content">
+        <div class="modalc-header">
+            <h4 class="modalc-title">
+               {{title}}
+            </h4> 
+            X           
+        </div>
+        <div class="modalc-container">
+            <div class="moda-body">
+                Se ha registrado nuevo inmueble con exito
+            </div>
+            <button class="btn btn-success btn-block" data-dismiss="modal" (click)="modal.close">OK</button>
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div> 
+</ng-template>
+
+<!-- The Modal 
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+<div class="modal-header">
+    <h4 class="modal-title">TITULO</h4>
+    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+</div>
+
+
+<div class="modal-body">
+    Modal body..
+</div>
+
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+</div>
+
+</div>
+</div>
+</div>
+-->

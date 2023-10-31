@@ -1,0 +1,59 @@
+<h3 class="font-">
+   Listado inmuebles
+  </h3>
+  
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item">Inmuebles</li>
+      <li class="breadcrumb-item active" aria-current="page">Listado Inmuebles</li>
+    </ol>
+  </nav>
+
+<div class="container mt-4" id="container-table">
+    <div class="row">
+        <div class="col">
+            <!-- <div class="btn btn-dark mb-2"style="float: right;" (click)="openLg(content)" >+</div> -->
+            <i class="fa-solid fa-user-plus fa-2xl mb-4"
+                style="color: #3d6b47; float: right; cursor: pointer;  background-color: #5ca784"
+               ></i>
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered " id="tablaUsuarios">
+                    <thead>
+                        <tr id="fila-usuario">
+                            <th scope="col">ID</th>
+                            <th scope="col">Propietario</th>
+                            <th scope="col">Fecha ingreso</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Motivo </th>
+                            <th scope="col">Dirección</th>
+                            <th scope="col">Localidad</th>                            
+                            <th scope="col">Antiguedad</th>
+                            <th scope="col">Estado</th>                                                        
+                            <th scope="col" id="table-option">#</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let inmueble of inmuebles">
+                            <td>{{inmueble.id_inmueble}}</td>
+                            <td>{{inmueble.propietario}}</td>
+                            <td>{{inmueble.fechaIngreso_muestra}}</td>
+                            <td>{{inmueble.tipo_inmueble}}</td>
+                            <td>{{inmueble.motivo}}</td>
+                            <td>{{inmueble.direccion}}</td>
+                            <td>{{inmueble.ciudad}}</td>                            
+                            <td>{{inmueble.antiguedad}}</td>
+                            <td>{{inmueble.estado}}</td>
+                            <td class=""><i class="fa-solid fa-pen-to-square fa-xl mx-3" style="cursor: pointer"
+                                    ></i>
+                                <i class="fa-solid fa-trash-can fa-xl" style="color: #9b2222; cursor: pointer"
+                                    ></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

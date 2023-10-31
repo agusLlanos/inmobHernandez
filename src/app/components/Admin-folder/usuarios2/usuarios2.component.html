@@ -1,0 +1,218 @@
+<div class="container mt-5" id="container-table">
+  <div class="row">
+    <div class="col">
+      <!-- <div class="btn btn-dark mb-2"style="float: right;" (click)="openLg(content)" >+</div> -->
+      <i class="fa-solid fa-user-plus fa-2xl mb-4"
+        style="color: #3d6b47; float: right; cursor: pointer;  background-color: #5ca784" (click)="openLg(content)"></i>
+      <div class="table-responsive">
+        <table class="table table-hover table-bordered " id="tablaUsuarios">
+          <thead>
+            <tr id="fila-usuario">
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">Dni</th>
+              <th scope="col">telefono</th>
+              <th scope="col">Email</th>
+              <th scope="col">Tipo Usuario</th>
+              <th scope="col">F.Nacimiento</th>
+              <th scope="col" id="table-option">#</th>
+            </tr>
+          </thead>
+
+          <ng-container *ngIf="mostrar==false; else editar">
+            <tbody>
+              <tr *ngFor="let usuario of usuarios">
+                <td>{{usuario.nombre}}</td>
+                <td>{{usuario.apellido}}</td>
+                <td>{{usuario.dni}}</td>
+                <td>{{usuario.telefono}}</td>
+                <td>{{usuario.email}}</td>
+                <td>{{usuario.descripcion}}</td>
+                <td>{{usuario.fechaNac_muestra}}</td>
+
+                <td class=""><i class="fa-solid fa-pen-to-square fa-xl mx-3" style="cursor: pointer"
+                    (click)="editarUsuario(usuario)"></i>
+                  <i class="fa-solid fa-trash-can fa-xl" style="color: #9b2222; cursor: pointer"
+                    (click)="eliminarUsuario(usuario.id)"></i>
+                </td>
+              </tr>
+            </tbody>
+          </ng-container>
+
+          <ng-template #editar>
+            <tbody>
+              <tr *ngFor="let usuario of usuarios">
+                <ng-container *ngIf="usuario.id==usuarioEditar.id; else user">
+                  <td>
+                    <input class="form-control" type="text" placeholder="Default input"
+                      [(ngModel)]="usuarioEditar.nombre">
+
+                  </td>
+                  <td>
+                    <input class="form-control" type="text" placeholder="Default input"
+                      [(ngModel)]="usuarioEditar.apellido">
+
+                  <td><input class="form-control" type="text" placeholder="Default input"
+                      [(ngModel)]="usuarioEditar.dni"></td>
+                  <td> <input class="form-control" type="text" placeholder="Default input"
+                      [(ngModel)]="usuarioEditar.telefono">
+                  </td>
+                  <td> <input class="form-control" type="text" placeholder="Default input"
+                      [(ngModel)]="usuarioEditar.email">
+                  </td>
+                  <!--   <td> <select name="tipo_usuario" id="tipo_usuario">
+                  <option value="propietario">Propietario</option>
+                  <option value="inquilino">Inquilino</option>
+                  <option value="garante">Garante</option>
+                  
+                </select></td> -->
+                  <td><input type="text" [(ngModel)]="usuarioEditar.descripcion"></td>
+                  <td><input type="text" [(ngModel)]="usuarioEditar.fecha_nac"></td>
+
+                  <td class="">
+                    <i class="fa-solid fa-circle-check fa-2xl  mx-3" style="color: #25511f; cursor: pointer;"
+                      (click)="guardarEdicion()"></i>
+                    <i class="fa-solid fa-rectangle-xmark fa-2xl" style="color: #2b2626; cursor: pointer;"
+                      (click)="cancelarEdicion(usuarioEditar)"></i>
+                  </td>
+                </ng-container>
+
+                <ng-template #user>
+                  <td>{{usuario.nombre}}</td>
+                  <td>{{usuario.apellido}}</td>
+                  <td>{{usuario.dni}}</td>
+                  <td>{{usuario.telefono}}</td>
+                  <td>{{usuario.email}}</td>
+                  <td>{{usuario.descripcion}}</td>
+                  <td>{{usuario.fechaNac_muestra}}</td>
+
+                  <td><i class="fa-solid fa-pen-to-square fa-xl mx-3" style="cursor: pointer"
+                      (click)="editarUsuario(usuario)"></i>
+                    <i class="fa-solid fa-trash-can fa-xl" style="color: #9b2222; cursor: pointer"
+                      (click)="eliminarUsuario(usuario.id)"></i>
+                  </td>
+                </ng-template>
+              </tr>
+            </tbody>
+          </ng-template>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #myModalInfo let-modal>
+  <div class="modal-content ">
+    <div class="modal-header">
+      <h4 class="modal-title w-100">Exitoso!</h4>
+    </div>
+    <div class="modal-body">
+      <p class="text-center">Se modificaron los datos del usuario de manera exitosa</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-success btn-block" data-dismiss="modal" (click)="modal.close('ok')">OK</button>
+    </div>
+  </div>
+</ng-template>
+
+<!--MODAL PREGUNTA PARA CONFIRMAR (to Trigger Modal) -->
+<ng-template #myModalConf let-modal>
+  <div class="modal-dialog modal-confirm">
+    <div class="modal-content">
+      <div class="modal-header flex-column">
+        <h4 class="modal-title w-100">Está seguro?</h4>
+      </div>
+      <div class="modal-body">
+        <p>¿Realmente desea eliminar este usuario? Este proceso no se puede deshacer.</p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button id="btnSi" type="button" class="btn btn-danger" (click)="modal.close('si')">SI</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modal.close('no')">NO</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<!--MODAL formulario para agregar USUARIOS (to Trigger Modal) -->
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title family" id="modal-basic-title">Agregar usuario</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form id="formUsuarioModal">
+      <div class="input-group mb-4">
+        <div class="row">
+
+          <div class="col col-sm-9">
+            <input type="text" class="form-control mt-4" placeholder="Nombre" name="nombre"
+              [(ngModel)]="model.nombre" />
+          </div>
+
+          <div class="col col-sm-9">
+            <input type="text" class="form-control mt-4" placeholder="Apellido" name="apellido"
+              [(ngModel)]="model.apellido" />
+          </div>
+
+          <div class="col col-sm-9">
+            <input type="text" class="form-control mt-4" placeholder="DNI" name="dni" [(ngModel)]="model.dni" />
+          </div>
+
+          <div class="col col-sm-9">
+            <input type="text" class="form-control mt-4" placeholder="Telefono" name="telefono"
+              [(ngModel)]="model.telefono" />
+          </div>
+
+          <div class="col col-sm-9">
+            <input type="text" class="form-control mt-4" placeholder="Email" name="email" [(ngModel)]="model.email" />
+          </div>
+
+          <div class="col col-sm-9 ">
+            <input type="text" class="form-control mt-4" placeholder="Tipo de Usuario" name="tipo_usuario"
+              [(ngModel)]="model.descripcion" />
+          </div>
+
+          <!-- <div ngbDropdown class="w-100">
+              <button type="button" class="btn btn-outline-success w-75" id="dropdownBasic1" ngbDropdownToggle>
+                Tipo de Usuario
+              </button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button ngbDropdownItem>Propietario</button>
+                <button ngbDropdownItem>Inquilino</button>
+                <button ngbDropdownItem>Garante</button>
+              </div>
+            </div>
+                </div> -->
+
+
+          <div class="col col-sm-9">
+            <input type="text" class="form-control mt-4" placeholder="Fecha de Nacimiento" name="fecha_nac"
+              [(ngModel)]="model.fecha_nac" />
+          </div>
+
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-outline-success" (click)="onSubmit()">Agregar</button>
+  </div>
+</ng-template>
+<!--MODAL PREGUNTA PARA CONFIRMAR (to Trigger Modal) -->
+<ng-template #myModalCanc let-modal>
+  <div class="modal-dialog modal-confirm">
+    <div class="modal-content">
+      <div class="modal-header flex-column">
+        <h4 class="modal-title w-100">Está seguro?</h4>
+      </div>
+      <div class="modal-body">
+        <p>¿Realmente desea cancelar? Puede que se pierdan datos ingresados.</p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button id="btnSi" type="button" class="btn btn-danger" (click)="modal.close('si')">SI</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modal.close('no')">NO</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
