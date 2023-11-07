@@ -43,18 +43,19 @@ export class inmueble {
     email : string
     id_propietario : number
     cloaca : boolean
+   
 
     constructor(inmue: any) {
         this.id_inmueble = inmue.id_inmueble
         this.id_propietario = inmue.id_propietario 
         this.fecha_ingreso = inmue.fecha_ingreso
         this.fechaIngreso_muestra = new Date(this.fecha_ingreso).toLocaleDateString()
-        this.tipo_inmueble = inmue.tipo
+        this.tipo_inmueble = this.convertirMayuscula(inmue.tipo)
         this.motivo = inmue.descripcion
-        this.ciudad = inmue.ciudad
-        this.calle = inmue.calle
+        this.ciudad =  this.convertirMayuscula(inmue.ciudad)
+        this.calle =  this.convertirMayuscula(inmue.calle)
         this.numero = inmue.numero
-        this.direccion = `${inmue.calle} ${inmue.numero} `
+        this.direccion = ` ${this.convertirMayuscula(inmue.calle)} ${inmue.numero} `
         this.antiguedad = inmue.antiguedad
         this.estado = inmue.estado
         this.medidas_lote = inmue.medidas_lote
@@ -88,7 +89,13 @@ export class inmueble {
         this.luz = inmue.luz
         this.cant_banios = inmue.cant_banios
         this.cant_habit = inmue.cant_habit
+        
+    }
+   
 
+    convertirMayuscula(str:string){
+    return str.charAt(0).toUpperCase() + str.slice(1); 
+    
     }
 
 }

@@ -10,6 +10,9 @@
   </ol>
 </nav>
 
+<ngb-alert type="danger" [dismissible]="false" [hidden]="valorAlert">
+  <b>El dni ingresado ya se encuentra registrado</b>
+</ngb-alert>
 
 <section>
   <div class="row">
@@ -85,9 +88,9 @@
                     [(ngModel)]="model.patio">
                   <label class="form-check-label" for="flexCheckDefault">
                     Patio
-                  </label>    
-                </div>                                                        
-                                             
+                  </label>
+                </div>
+
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
                     [(ngModel)]="model.cochera">
@@ -118,7 +121,7 @@
                     Cocina
                   </label>
                 </div>
-                
+
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
                     [(ngModel)]="model.terraza">
@@ -127,7 +130,7 @@
                   </label>
                 </div>
                 <input type="number" class="form-control form-control-sm mt-3" id="hab"
-                  placeholder="Cantidad habitaciones" name="hab" [(ngModel)]="model.cant_habit"> 
+                  placeholder="Cantidad habitaciones" name="hab" [(ngModel)]="model.cant_habit">
               </div>
               <div class="col col-sm-4 col-xxl-4" id="column-servicios">
                 <div class="form-check">
@@ -336,19 +339,31 @@
           </ng-container>
           <ng-container *ngIf="valorRadioButton == 'existe'">
             <div class="col-sm-12 ">
-              <select class="form-select form-select-sm" aria-label="Default select example" [(ngModel)]="model.id_propietario">
+              <select class="form-select form-select-sm" aria-label="Default select example"
+                [(ngModel)]="model.id_propietario">
                 <option value={{prop.id_propietario}} *ngFor="let prop of propietarios">
                   {{prop.apeNom}}
-                </option>                
+                </option>
               </select>
             </div>
           </ng-container>
-           <button type="submit" class="btn btn-success" >Prueba</button> 
-           <app-modal [title]="'Usuario registrado'" #modal >
-            
-           </app-modal>
+          <app-modal [title]="'Usuario registrado'" #modal></app-modal>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-tittle font2- pb-3">
+              Cargar imagenes
+            </h5>
+            <div class="mb-3">              
+              <input class="form-control form-control-sm" id="formFileSm" type="file" multiple (change)="loadFileImage($event)">
+            </div>
+            <button type="submit" class="btn btn-success" (click)="prueba()">prueba</button>
+          </div>
         </div>
       </div>
     </div>
+      
   </div>
 </section>

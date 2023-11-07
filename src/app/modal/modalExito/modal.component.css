@@ -33,7 +33,7 @@
 .modalc-title{
     font-size: 24px;
     font-weight: 600;
-    color: #000;
+    color: #00562f;
 }
 .modalc-container{
     padding: 32px;
@@ -46,3 +46,6 @@
 #modal-basic-title{
     color: #055a32
 } 
+i{
+    cursor: pointer;
+}

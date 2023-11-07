@@ -1,0 +1,53 @@
+<h3 class="font-">
+  Inmuebles disponibles para alquiler
+</h3>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item">Inmuebles</li>
+    <li class="breadcrumb-item active" aria-current="page">Disponibles para Alquiler</li>
+  </ol>
+</nav>
+
+<section>
+  <div class="card">
+    <div class="card-body">
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-7 pb-4">
+          <div class="input-group rounded">
+            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+              aria-describedby="search-addon" />
+            <button type="button" class="btn btn-primary">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngFor="let inmueble of inmuebles_para_alquiler" id="row-inmue-alquiler">
+        <div class="col-6 border-bottom border-3">          
+          <div class=" text-secondary">            
+            <h5 class="font2"><b>{{inmueble.tipo_inmueble}} para alquiler</b></h5>
+            <i class="fa-solid fa-location-dot pb-3" style="color: #4e4f50;"></i>
+            <span>   {{inmueble.direccion}} ({{inmueble.ciudad}})</span>            
+            <br>
+            <span><b>{{inmueble.cant_habit}} habitacion/es | {{inmueble.cant_banios}} baño/s</b></span>
+            <br>
+            <span>Valor: $1500</span>
+            <br>
+            <span>Código: {{inmueble.id_inmueble}}</span>
+          </div>
+        </div>
+        <div class="col-6 border-bottom border-3">
+          <i class="fa-solid fa-square-check" style="color: #2b6227;"></i>
+          <span class="text-success">     Disponible</span>
+          <br>
+          <img src="C:\Users\Matias\Desktop\imagen_inmueble\IMG_0093.JPG"  width="150" height="50">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

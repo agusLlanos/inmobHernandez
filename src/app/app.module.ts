@@ -20,7 +20,10 @@ import { RouterModule } from '@angular/router';
 import { AdminComponent } from './components/Admin-folder/admin/admin.component';
 import { InmueblesComponent } from './components/Admin-folder/inmuebles/inmuebles.component';
 import { NuevoInmuebleComponent } from './components/Admin-folder/nuevo-inmueble/nuevo-inmueble.component';
-import { ModalComponent } from './modal/modal/modal.component';
+import { ModalComponent } from './modal/modalExito/modal.component';
+import { DisponibleAlquilerComponent } from './components/Admin-folder/disponible-alquiler/disponible-alquiler.component';
+import { DisponibleVentaComponent } from './components/Admin-folder/disponible-venta/disponible-venta.component';
+
 
 @NgModule({
   declarations: [
@@ -37,6 +40,8 @@ import { ModalComponent } from './modal/modal/modal.component';
     InmueblesComponent,
      NuevoInmuebleComponent,
      ModalComponent,
+     DisponibleAlquilerComponent,
+     DisponibleVentaComponent,
   ],
   imports: [
     BrowserModule,

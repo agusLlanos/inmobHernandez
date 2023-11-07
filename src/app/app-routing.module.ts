@@ -13,7 +13,8 @@ import { ComercialComponent } from './components/Comercial-folder/comercial/come
 import { AdminComponent } from './components/Admin-folder/admin/admin.component';
 import { InmueblesComponent } from './components/Admin-folder/inmuebles/inmuebles.component';
 import { NuevoInmuebleComponent } from './components/Admin-folder/nuevo-inmueble/nuevo-inmueble.component';
-
+import { DisponibleAlquilerComponent } from './components/Admin-folder/disponible-alquiler/disponible-alquiler.component';
+import { DisponibleVentaComponent } from './components/Admin-folder/disponible-venta/disponible-venta.component';
 
 const routes: Routes = [
 
@@ -34,7 +35,9 @@ const routes: Routes = [
     children: [     
       { path: 'Usuarios', component: Usuarios2Component },
       { path: 'Inmuebles', component: InmueblesComponent },
-      {path : 'NuevoInmueble', component : NuevoInmuebleComponent}
+      {path : 'NuevoInmueble', component : NuevoInmuebleComponent},
+      {path: 'Disponible-alquiler', component : DisponibleAlquilerComponent},
+      {path: 'Disponible-venta', component : DisponibleVentaComponent}
     ]
   },
   { path: '', pathMatch: 'full', redirectTo: 'Comercial/Inicio' },

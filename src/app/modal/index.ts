@@ -1,7 +1,7 @@
-import { ModalComponent } from "./modal/modal.component";
+import { ModalComponent } from "./modalExito/modal.component";
 
 export const modals : any [] = [
     ModalComponent
 ];
 
-export * from "./modal/modal.component";
+export * from "./modalExito/modal.component";
