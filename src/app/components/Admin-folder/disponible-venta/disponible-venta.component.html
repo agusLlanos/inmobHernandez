@@ -1,1 +1,62 @@
-<p>disponible-venta works!</p>
+<h3 class="font-">
+    Inmuebles disponibles para Venta
+  </h3>
+  
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item">Inmuebles</li>
+      <li class="breadcrumb-item active" aria-current="page">Disponibles para Venta</li>
+    </ol>
+  </nav>
+  
+  <section>
+    <div class="card">   
+  
+      <div class="container">
+        <div class="row">
+          <div class="col-7 pb-5">
+            <div class="input-group rounded">
+              <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                aria-describedby="search-addon" />
+              <button type="button" class="btn btn-primary">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+          <div class="col-5">
+            <span>Ordenar por </span>
+            <select class="form-select" id="dropdown-Filtro" [(ngModel)]="valorSelect" (change)="onChange(valorSelect)"> 
+              <option selected value=0>Más relevante</option>
+              <option value=1>Mayor precio</option>
+              <option value=2>Menor precio</option>            
+            </select>
+          </div>
+        </div>
+        <div class="row" *ngFor="let inmueble of inmuebles_para_Ventas" id="row-inmue-alquiler">
+          <div class="col-6 border-bottom border-3 pb-5">          
+            <div class=" text-secondary">            
+              <h5 class="font2"><b>{{inmueble.tipo_inmueble}} para venta</b></h5>
+              <i class="fa-solid fa-location-dot pb-3" style="color: #4e4f50;"></i>
+              <span>   {{inmueble.direccion}} ({{inmueble.ciudad}})</span>            
+              <br>
+              <span><b>{{inmueble.cant_habit}} habitacion/es | {{inmueble.cant_banios}} baño/s</b></span>
+              <br>
+              <span>Valor: {{inmueble.costo_inicial}}</span>
+              <br>
+              <span class="">Código: {{inmueble.id_inmueble}}</span>
+              <br>
+              <button type="button" class="btn btn-primary" id="Ver-detalles">Ver detalles</button>
+            </div>
+          </div>
+          <div class="col-6 border-bottom border-3">
+            <div class="pb-3">
+              <i class="fa-solid fa-square-check" style="color: #2b6227;"></i>
+              <span class="text-success">     Disponible</span>            
+            </div>                    
+            <img src="..\assets\imagenes\imagen_inmueble\IMG_0834.JPG"  width="250" height="150">
+          </div>
+        </div>    
+      </div>
+    </div>
+  </section>

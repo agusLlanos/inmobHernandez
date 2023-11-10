@@ -43,6 +43,7 @@ export class inmueble {
     email : string
     id_propietario : number
     cloaca : boolean
+    costo_inicial : string
    
 
     constructor(inmue: any) {
@@ -89,13 +90,15 @@ export class inmueble {
         this.luz = inmue.luz
         this.cant_banios = inmue.cant_banios
         this.cant_habit = inmue.cant_habit
-        
+        this.costo_inicial = inmue.costo_inicial
     }
    
-
-    convertirMayuscula(str:string){
-    return str.charAt(0).toUpperCase() + str.slice(1); 
-    
+    variable : string = '';
+    convertirMayuscula(str:string){    
+        if(str != null){
+          this.variable = str.charAt(0).toUpperCase() + str.slice(1); 
+        }   
+        return this.variable;
     }
 
 }

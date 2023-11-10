@@ -1,5 +1,18 @@
 #row-inmue-alquiler{
-    padding-bottom: 50px ;
-    padding-top: 25px;
+    padding-bottom: 50px ;    
     padding-left: 20px;
+}
+#Ver-detalles{
+    width: 175px;
+    height: 40px;
+    margin-top: 30px;
+}
+#dropdown-Filtro{
+    width: 150px;
+    height: 30px;
+    display: inline;
+    font-size: 12px;
+}
+.card{
+    padding-top: 40px;
 }
