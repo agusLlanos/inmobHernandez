@@ -523,7 +523,7 @@ footer {
 
 }
 
-/*VENTANA PARA CONFIRMAR*/
+/* /*VENTANA PARA CONFIRMAR
 #myModal .modal-confirm {
   color: #636363;
   width: 400px;
@@ -622,7 +622,7 @@ footer {
 
 /* FIN VENTANA PARA CONFIRMAR*/
 
-/*VENTANA CONFIRMACION*/
+/*VENTANA CONFIRMACION
 
 #myModal2 .modal-confirm {
   color: #636363;
@@ -713,7 +713,7 @@ footer {
   outline: none;
 }
 
-/*VENTANA USUARIO MODIFICADO*/
+VENTANA USUARIO MODIFICADO
 
 #myModal3 .modal-confirm {
   color: #636363;
@@ -804,9 +804,9 @@ footer {
   outline: none;
 }
 
-/*FIN VENTANA CONFIRMACION*/
+FIN VENTANA CONFIRMACION
 
-/*VENTANA PARA CANCELAR, MODAL4*/
+/*VENTANA PARA CANCELAR, MODAL4
 #myModal4 .modal-confirm {
   color: #636363;
   width: 400px;
@@ -903,7 +903,7 @@ footer {
   background: #ee3535;
 }
 
-/* FIN VENTANA PARA CONFIRMAR*/
+ FIN VENTANA PARA CONFIRMAR*/
 
 /*FUENTE DE TITULOS DE COMPONENTES DE INMUEBLES*/
 

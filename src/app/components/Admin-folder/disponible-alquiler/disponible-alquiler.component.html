@@ -1,19 +1,19 @@
-<h3 class="font-">
-  Inmuebles disponibles para alquiler
-</h3>
+<ng-container *ngIf="bandera; else variable">
+  <h3 class="font-">
+    Inmuebles disponibles para alquiler
+  </h3>
 
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Home</a></li>
-    <li class="breadcrumb-item">Inmuebles</li>
-    <li class="breadcrumb-item active" aria-current="page">Disponibles para Alquiler</li>
-  </ol>
-</nav>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item">Inmuebles</li>
+      <li class="breadcrumb-item active" aria-current="page">Disponibles para Alquiler</li>
+    </ol>
+  </nav>
 
-<section>
-  <div class="card">   
-     <ng-container *ngIf="bandera; else variable"> 
-      <div class="container">
+  <section>
+    <div class="card">
+      <div class="container pt-5">
         <div class="row">
           <div class="col-7 pb-5">
             <div class="input-group rounded">
@@ -46,7 +46,8 @@
               <br>
               <span class="">Código: {{inmueble.id_inmueble}}</span>
               <br>
-              <button type="button" class="btn btn-primary" id="Ver-detalles" (click)="verDetalle(inmueble.id_inmueble)">Ver detalles</button>
+              <button type="button" class="btn btn-primary" id="Ver-detalles"
+                (click)="verDetalle(inmueble.id_inmueble)">Ver detalles</button>
             </div>
           </div>
           <div class="col-6 border-bottom border-3">
@@ -54,42 +55,25 @@
               <i class="fa-solid fa-square-check" style="color: #2b6227;"></i>
               <span class="text-success"> Disponible</span>
             </div>
-            <img src="..\assets\imagenes\imagen_inmueble\IMG_0834.JPG" width="250" height="150">
+            <div *ngFor="let imagen of array_img">
+              <div *ngIf="inmueble.id_inmueble == imagen.id_inmueble">
+                <img src="assets\imagenes\imagen_inmueble\{{imagen.nombreArchivo}}" width="250" height="150">
+              </div>
+            </div>
           </div>
         </div>
       </div>
-     </ng-container> 
 
-     <ng-template #variable>
-      <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
-        </li>
-      </ul>
-      <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-          La Renga es un grupo musical de Hard rock de Argentina formado en el barrio de Mataderos, Buenos Aires, en 1988. La formación está integrada por Gustavo "Chizzo" Nápoli (cantante principal y guitarra principal), Gabriel "Tete" Iglesias (bajo) y Jorge "Tanque" Iglesias (batería), quienes integran el grupo desde sus inicios, mientras que Manuel "Manu" Varela se les unió en 1994, gracias a Gabriel "Chiflo" Sánchez (saxo), miembro hasta 2008.
+    </div>
+  </section>
+</ng-container>
 
-Su carrera se basó en la autogestión, y desde 2002 cuentan con una producción independiente, manejando su propio sello, estudio y realización de sus espectáculos.
-        </div>
-        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">La banda surgió en 1988 en el barrio de Mataderos, Buenos Aires. Gustavo Chizzo Nápoli, Raúl Locura Dilelio, Jorge Tanque Iglesias y Gabriel Tete Iglesias, conformaron La Renga para el final de ese año, cuando el 31 de diciembre realizaron una primera presentación para familiares y amigos.1​
-
-          La Renga inició haciendo versiones de canciones de bandas como Creedence, Vox Dei y Manal, entre otras.[cita requerida]
-          
-          El nombre surgió como referencia a la época, donde parecía que siempre faltaba algo para poder encaminarse bien.[cita requerida] También está la versión de Locura, quien dice que su pareja de ese entonces tenía una pierna 1,5 cm más corta que la otra, lo que le provocaba una perceptible cojera; es decir era coja, o «renga», y al Tete se le ocurrió ponerle así a la banda.[cit
-        </div>
-        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-          A partir de un demo de Locura, que llega a manos de Chizzo a través de un amigo, ambos se conocen y deciden formar Colera. Este primer intento llega a su fin cuando a Chizzo le llega el turno de hacer el servicio militar, que era obligatorio en Argentina durante aquellos años. Chizzo terminó el servicio militar y de vuelta con Locura, buscaron a un bajista. Tete fue contactado y junto a él, su hermano Tanque participaba en la batería. Tanque participaba de una banda de metal al mismo tiempo, la cual abandonó por las presiones que le causaban ambos ensayos junto con el trabajo.[cita requerida] Tanque cuenta que optó por lo que sería La Renga por su ambiente más familiar, comparado con el ambiente más heavy de Nepal, su otra banda.
-
-Las primeras presentaciones las hicieron en el Club Larrazábal, Galpón del Sur, además del circuito underground de Buenos Aires.
-        </div>
-      </div>
-     </ng-template>
-  </div>
-</section>
+<ng-template #variable>
+  <app-detalle-inmueble
+  (volver)="volver($event)"
+   [id_inmueble]="id_seleccionado"
+   [inmuebles_alquiler]="inmuebles_para_alquiler"
+   [img_inmue]="img_inmue"
+   ></app-detalle-inmueble>
+   
+</ng-template>

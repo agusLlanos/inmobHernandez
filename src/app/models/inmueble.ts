@@ -43,7 +43,7 @@ export class inmueble {
     email : string
     id_propietario : number
     cloaca : boolean
-    costo_inicial : string
+    costo_inicial : number
    
 
     constructor(inmue: any) {

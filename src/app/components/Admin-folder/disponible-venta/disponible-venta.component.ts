@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { inmueble } from 'src/app/models/inmueble';
 import { ApiInmueble } from 'src/app/service/api.inmueble';
+import { imagen_inmueble } from 'src/app/models/imagen_inmueble';
 
 @Component({
   selector: 'app-disponible-venta',
@@ -9,11 +10,15 @@ import { ApiInmueble } from 'src/app/service/api.inmueble';
 })
 export class DisponibleVentaComponent {
   constructor(private ApiInmueble: ApiInmueble) { }
+
   inmuebles_para_Ventas: inmueble[];
   valorSelect: number = 0;
+  var: number;
+  img_inmue : imagen_inmueble [] = [];
 
   ngOnInit(): void {
-    this.listarVentas()
+    this.listarVentas();
+    this.listarImg_Inmuebles();
   }
 
   listarVentas() {
@@ -42,9 +47,18 @@ export class DisponibleVentaComponent {
       })
     }
   }
-  var: number;
+
   onChange(variable: number) {
     this.var = variable;
     this.listarVentas();
+  }
+
+  listarImg_Inmuebles() {
+    this.ApiInmueble.listar_img_inmuebles().subscribe(data => {
+      data.img_inmueble.forEach((inmue: any) => {
+        this.img_inmue.push(new imagen_inmueble(inmue))
+      })
+      console.log(this.img_inmue)
+    })
   }
 }

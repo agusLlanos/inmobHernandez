@@ -22,6 +22,7 @@ export class ApiInmueble {
     private urlApiGetVentas = 'https://localhost:7141/inmueble/listar_Ventas_Disponibles'
     private urlApiGetVentas_desc = 'https://localhost:7141/inmueble/listar_Ventas_Disponibles_desc'
     private urlApiGetVentas_asc = 'https://localhost:7141/inmueble/listar_Ventas_Disponibles_asc'
+    private urlApiGet_img_inmueble = 'https://localhost:7141/inmueble/listarImagenes'
 
     createNewInmueble(inmueb: inmueble): Observable<inmueble> {
         return this.http.post<any>(this.urlApiPost, inmueb);
@@ -33,8 +34,12 @@ export class ApiInmueble {
 
     cargarImagen(inmue : imagen_inmueble): Observable<any>{
         const formData = new FormData(); 
-        formData.append('file', (<File>inmue.Archivo));
-        
+
+        inmue.Archivo.forEach(img =>{
+            formData.append('file', (<any>img))
+        })        
+
+        this.urlApiPostImagen = `${this.urlApiPostImagen}?id_inmueble=${inmue.id_inmueble}&descripcion=${inmue.descripcion}`
         return this.http.post<any>(this.urlApiPostImagen,formData); 
     }
 
@@ -57,7 +62,11 @@ export class ApiInmueble {
     } 
     public listarInmuebles_xVentasdisponibles_desc(): Observable<any>{
         return this.http.get<inmueble>(this.urlApiGetVentas_desc)
-    }    
+    }   
+    
+    public listar_img_inmuebles(): Observable<any>{
+        return this.http.get<imagen_inmueble>(this.urlApiGet_img_inmueble)
+    }
 
 
 }

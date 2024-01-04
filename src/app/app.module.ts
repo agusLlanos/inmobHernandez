@@ -23,6 +23,7 @@ import { NuevoInmuebleComponent } from './components/Admin-folder/nuevo-inmueble
 import { ModalComponent } from './modal/modalExito/modal.component';
 import { DisponibleAlquilerComponent } from './components/Admin-folder/disponible-alquiler/disponible-alquiler.component';
 import { DisponibleVentaComponent } from './components/Admin-folder/disponible-venta/disponible-venta.component';
+import { DetalleInmuebleComponent } from './components/Admin-folder/detalle-inmueble/detalle-inmueble.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { DisponibleVentaComponent } from './components/Admin-folder/disponible-v
      ModalComponent,
      DisponibleAlquilerComponent,
      DisponibleVentaComponent,
+     DetalleInmuebleComponent,
   ],
   imports: [
     BrowserModule,

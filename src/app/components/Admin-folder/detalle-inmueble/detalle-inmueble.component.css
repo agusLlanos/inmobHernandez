@@ -1,0 +1,31 @@
+#myTab{
+    background-color: #098058;      
+}
+.nav-link{
+    color: rgb(39, 37, 37) !important;
+}
+.font2{
+    font-size: 25px;
+}
+#img-inmueble{
+    max-width: 100%;
+}
+#myTabContent {
+    background-color: #f6f9ff 
+}
+#profile img{
+    background-color:  #4b3f3f;
+    padding: 5px;
+    width: 100%;
+    box-shadow: 0 0 15px rgba(0,0,0,0,6);
+    cursor: pointer;
+}
+
+#exampleModal img{
+    width: 100%;    
+}
+#myModalInfo .modal-dialog{
+    width: 100% !important;
+    max-width: 100% !important;
+}
+

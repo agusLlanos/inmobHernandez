@@ -236,6 +236,15 @@
                   name="medidas_lote" [(ngModel)]="model.medidas_lote">
               </div>
             </div>
+            <div class="row">
+              <div class="col-sm-4 mt-5">
+                <label class="form-check-label" for="flexCheckChecked">
+                  Costo Inicial
+                </label>
+                <input type="number" class="form-control form-control-sm mt-2" id="costo_inicial" placeholder=""
+                  name="costo_inicial" [(ngModel)]="model.costo_inicial">
+              </div>
+            </div>
 
             <div class="row g-3 mt-3">
               <span class="font-">Observaciones</span>
@@ -356,14 +365,16 @@
             <h5 class="card-tittle font2- pb-3">
               Cargar imagenes
             </h5>
-            <div class="mb-3">              
-              <input class="form-control form-control-sm" id="formFileSm" type="file" multiple (change)="loadFileImage($event)">
-            </div>
-            <button type="submit" class="btn btn-success" (click)="prueba()">prueba</button>
+            <div class="mb-3 pb-4">
+              <input class="form-control form-control-sm" id="formFileSm" type="file" multiple
+                (change)="loadFileImage($event)">
+              <textarea rows="3" class="form-control form-control-sm mb-2 mt-4" id="descripcion" name="descripcion"
+                [(ngModel)]="imagen.descripcion" placeholder="descripcion"></textarea>             
+            </div>            
           </div>
         </div>
       </div>
     </div>
-      
+
   </div>
 </section>

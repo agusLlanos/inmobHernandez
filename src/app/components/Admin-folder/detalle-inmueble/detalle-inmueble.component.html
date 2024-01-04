@@ -1,0 +1,78 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb pb-3">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item">Inmuebles</li>
+    <li class="breadcrumb-item active">Disponibles para Alquiler</li>
+    <li class="breadcrumb-item active" aria-current="page">Detalle Inmueble</li>
+  </ol>
+  <button type="button" class="btn btn-secondary btn-sm" (click)="back()">    
+    <i class="fa-solid fa-arrow-rotate-left" style="color: #ffffff;"></i>
+    Volver
+  </button>
+
+</nav>
+
+<h3 class="font2 pt-3">
+  Detalle Inmueble. Codigo: {{id_inmueble}}
+</h3>
+<section>
+  <div class="card">
+    <ul class="nav nav-tabs px-5" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+          role="tab" aria-controls="home" aria-selected="true">Detalle</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
+          role="tab" aria-controls="profile" aria-selected="false">Fotos</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
+          role="tab" aria-controls="contact" aria-selected="false">Ubicación</button>
+      </li>
+    </ul>
+    <div class="tab-content px-5 pt-5 pb-5" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div *ngFor="let inmueble of inmuebles_alquiler">
+          <!--<p>{{inmueble.id_inmueble}}{{inmueble.direccion}}</p> -->
+        </div>
+      </div>
+      <div class="tab-pane fade min-vh-100" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="container-lg">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+            <div *ngFor="let imagen of img_inmue">
+              <div class="col">
+                <div *ngIf="imagen.id_inmueble== id_inmueble">
+                  <img src="assets\imagenes\imagen_inmueble\{{imagen.nombreArchivo}}" width="300" height="250"
+                    id="img-inmueble" (click)="muestraImagen(imagen.nombreArchivo)">
+
+                  <!-- Modal -->
+                  <ng-template #myModalInfo let-modal>
+                    <div class="modal-dialog modal-lg ">
+                      <div class="">
+                        <div class="modal-header">
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <img src="assets\imagenes\imagen_inmueble\{{nombre_img}}" width="300" height="250"
+                            id="img-inmueble">
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+        <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4291.585136597917!2d-60.206193629985215!3d-33.33855379690298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b75d797033c9f9%3A0x6a8f3703b02bc5d7!2sRivadavia%20547%2C%20San%20Nicol%C3%A1s%20de%20Los%20Arroyos%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1685497551372!5m2!1ses-419!2sar"
+        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
