@@ -15,7 +15,7 @@
                 </div>
                 <h5 class="fw-normal mb-3 pb-3 pt-3 px-5" style="letter-spacing: 1px;">Iniciar Sesión</h5>
                 <div *ngIf="validacion == true">
-                  <div class="alert alert-success">{{mensaje}}</div>                    
+                  <div class="alert alert-danger">{{mensaje}}</div>                    
                 </div>
                 <div class="form-outline mb-4 px-4">                 
                   <input type="email" id="form2Example17" class="form-control" placeholder="Usuario" name="usuario" [(ngModel)]="model.usuario" required />

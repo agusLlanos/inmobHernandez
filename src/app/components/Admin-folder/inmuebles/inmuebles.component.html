@@ -1,22 +1,108 @@
 <h3 class="font-">
-   Listado inmuebles
-  </h3>
-  
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Home</a></li>
-      <li class="breadcrumb-item">Inmuebles</li>
-      <li class="breadcrumb-item active" aria-current="page">Listado Inmuebles</li>
-    </ol>
-  </nav>
+  Listado inmuebles
+</h3>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item">Inmuebles</li>
+    <li class="breadcrumb-item active" aria-current="page">Listado Inmuebles</li>
+  </ol>
+</nav>
 
 <div class="container mt-4" id="container-table">
+  <table class="table table-hover ">
+    <thead class="table-success">
+      <tr>
+        <th class="" scope="col">ID</th>
+        <th scope="col">Propietario</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Fecha ingreso</th>
+        <th scope="col">Motivo </th>
+        <th scope="col">Dirección</th>
+        <th scope="col">Localidad</th>
+        <th scope="col">Antiguedad</th>
+        <th scope="col">Estado</th>
+        <th scope="col" id="table-option">#</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let inmueble of inmuebles" class="table-light">
+        <td><b>{{inmueble.id_inmueble}}</b></td>
+        <td><b>{{inmueble.propietario}}</b></td>
+        <td><b>{{inmueble.tipo_inmueble}}</b></td>
+        <td><b>{{inmueble.fechaIngreso_muestra}}</b></td>
+        <td><b>{{inmueble.motivo}}</b></td>
+        <td><b>{{inmueble.direccion}}</b></td>
+        <td><b>{{inmueble.ciudad}}</b></td>
+        <td><b>{{inmueble.antiguedad}}</b></td>
+        <td><b>{{inmueble.estado}}</b></td>
+        <td><i class="fa-solid fa-pen-to-square fa-xl mx-3" style="cursor: pointer"
+            (click)=" openModal(inmueble.id_inmueble)"></i>
+          <i class="fa-solid fa-trash-can fa-xl" style="color: #9b2222; cursor: pointer"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- <app-modal-editar #modaleditar></app-modal-editar> -->
+<!-- (clic) = prueba(inmueble.id_inmueble)" 
+  openLg(contenido, inmueble.id_inmueble)
+  
+
+<ng-template #contenido let-modal>
+  <div class="modal-header">
+    <h2 class="modal-title family" id="modal-basic-title">Modificar usuario n° {{id_seleccionado}}</h2>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form id="formUsuarioModal">
+      <div class="input-group mb-4">
+        <div class="row">
+
+          <div class="col col-sm-9">
+            <input type="text" class="form-control mt-4" placeholder="Nombre" name="nombre"
+              [ngModel]="id_seleccionado" />
+          </div>
+
+          <div class="col col-sm-9">
+            <input type="text" class="form-control mt-4" placeholder="Apellido" name="apellido" />
+          </div>
+
+          <div class="col col-sm-9">
+            <input type="text" class="form-control mt-4" placeholder="DNI" name="dni" />
+          </div>
+
+          <div class="col col-sm-9">
+            <input type="text" class="form-control mt-4" placeholder="Telefono" name="telefono" />
+          </div>
+
+          <div class="col col-sm-9">
+            <input type="text" class="form-control mt-4" placeholder="Email" name="email" />
+          </div>
+
+          <div class="col col-sm-9 ">
+            <input type="text" class="form-control mt-4" placeholder="Tipo de Usuario" name="tipo_usuario" />
+          </div>
+
+          <div class="col col-sm-9">
+            <input type="text" class="form-control mt-4" placeholder="Fecha de Nacimiento" name="fecha_nac" />
+          </div>
+
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-outline-success">Agregar</button>
+  </div>
+</ng-template>
+
+
+<!-- 
+<div class="container mt-4" id="container-table">
     <div class="row">
-        <div class="col">
-            <!-- <div class="btn btn-dark mb-2"style="float: right;" (click)="openLg(content)" >+</div> -->
-            <i class="fa-solid fa-user-plus fa-2xl mb-4"
-                style="color: #3d6b47; float: right; cursor: pointer;  background-color: #5ca784"
-               ></i>
+        <div class="col">                     
             <div class="table-responsive">
                 <table class="table table-hover table-bordered " id="tablaUsuarios">
                     <thead>
@@ -56,4 +142,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

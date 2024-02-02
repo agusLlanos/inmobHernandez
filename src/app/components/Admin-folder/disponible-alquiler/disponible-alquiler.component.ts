@@ -23,6 +23,7 @@ export class DisponibleAlquilerComponent {
   var: number = 0;
   img_inmue: imagen_inmueble[] = [];
   id_seleccionado : number;
+  contadorAlquiler:number = 0;
 
   listarAlquileres() {
     this.inmuebles_para_alquiler = [];
@@ -32,6 +33,8 @@ export class DisponibleAlquilerComponent {
         data.inmueble.forEach((inmue: any) => {
           this.inmuebles_para_alquiler.push(new inmueble(inmue))
         })
+        this.contadorAlquiler = this.inmuebles_para_alquiler.length
+        //console.log(this.contadorAlquiler)
       })
     }
     if (this.valorSelect == 1) {
@@ -59,7 +62,7 @@ export class DisponibleAlquilerComponent {
       })
       this.filtrarIMG();
     })
-    console.log(this.img_inmue);
+    //console.log(this.img_inmue);
   }
 
   array_img: any[] = [];

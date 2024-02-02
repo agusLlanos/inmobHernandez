@@ -42,9 +42,9 @@
               <br>
               <span><b>{{inmueble.cant_habit}} habitacion/es | {{inmueble.cant_banios}} baño/s</b></span>
               <br>
-              <span>Valor: {{inmueble.costo_inicial}}</span>
+              <span>Valor: {{inmueble.signo}} {{inmueble.costo_inicial}}</span>
               <br>
-              <span class="">Código: {{inmueble.id_inmueble}}</span>
+              <span>Código: {{inmueble.id_inmueble}}</span>
               <br>
               <button type="button" class="btn btn-primary" id="Ver-detalles">Ver detalles</button>
             </div>
@@ -56,7 +56,8 @@
             </div>                    
             <img src="..\assets\imagenes\imagen_inmueble\IMG_0834.JPG"  width="250" height="150">
           </div>
-        </div>    
+        </div>  
+        <div class="font2" id="contador">Total disponibles: {{contadorVentas}}</div>  
       </div>
     </div>
   </section>

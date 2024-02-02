@@ -24,6 +24,7 @@ export class NuevoInmuebleComponent {
   prueba2: string;
   valorAlert: boolean = true;
   result: any;
+  id_inmueble1 : number
 
   ngOnInit(): void {
     this.listarPropietarios();
@@ -36,13 +37,17 @@ export class NuevoInmuebleComponent {
     lavadero: false, living: false, ascensor: false, aire_acond: false, comedor: false, cocina: false, amoblado: false,
     cloaca: false, cant_banios: null, cant_habit: null, observaciones: '', nombre: null, apellido: null, dni: null,
     telefono: null, fecha_nac: null, email: null, agua: false, calefaccion: false, gas: false, estado: 'alta', luz: false,
-    id_propietario: null, costo_inicial: null
+    id_propietario: null, costo_inicial: null, id_moneda : null
   })
 
   @ViewChild(ModalComponent) child: ModalComponent;
 
   variable: any;
   ult_id_inmue: any;
+
+  prueba(value:any){
+console.log(value)
+  }
 
   onSubmit() {
 
@@ -51,33 +56,31 @@ export class NuevoInmuebleComponent {
       if (this.result.length >= 1) {
         this.valorAlert = false;
       } else {
-        this.ApiInmueble.createNewInmueble(this.model).subscribe((Response: any) => {
-          console.log(Response)
-          this.guardarImagen(Response.id_inmueble)
-        }
-        );
-        this.valorAlert = true;
-        this.child.showModal()
-
-
-        /* this.ult_id_inmue = null;
- 
-         this.variable = this.inmuebles.at(-1);
-         this.ult_id_inmue = this.variable.id_inmueble + 1;     */
-
+        this.registrarInmueble();
 
       }
-    } else {
-      //completar en caso de que sea existente
+    } else {     
+
+      this.registrarInmueble();
     }
 
 
   };
 
+  registrarInmueble(){
+    this.ApiInmueble.createNewInmueble(this.model).subscribe((Response: any) => {
+      console.log(Response)
+      this.guardarImagen(Response.id_inmueble)
+    }
+    );
+    this.valorAlert = true;
+    this.child.showModal()
+  }
+
   onChange(variable: string) {
     this.valorRadioButton = variable
 
-    if (this.valorRadioButton == 'existe') {
+    if (variable == 'existe') {
       this.listarPropietarios()
     }
   }
@@ -132,22 +135,6 @@ export class NuevoInmuebleComponent {
       this.fileLoaded = event.target.files
       console.log(this.fileLoaded)
     }
-    //this.fileLoaded = event.target.files[0];
-    //reader.readAsDataURL(event.target.files);
-    //console.log(this.target.files)
-
-    //for (const vari in event.target.files) {
-    // this.fileLoaded.push(event.target.files[vari]);
-    //}
-
-
-
-    /*
-    event.target.files.forEach((vari : imagen_inmueble) => {
-      this.fileLoaded.push(new imagen_inmueble(vari))
-    })
-    console.log(this.fileLoaded)*/
-
 
   }
 }

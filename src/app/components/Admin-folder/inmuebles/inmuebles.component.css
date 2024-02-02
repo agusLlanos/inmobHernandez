@@ -10,10 +10,12 @@
 } 
 table{
     box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);    
-    border-collapse: collapse;
-    border-radius: 10px;
-    overflow: hidden;
+    /* border-collapse: collapse;
+    border-radius: 10px; 
+    overflow: hidden;*/
+    text-align: left;    
 }
+
 input{
     size:"5"
 }
@@ -31,7 +33,7 @@ input{
 }
 
 th{
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .font- {
@@ -43,3 +45,29 @@ th{
     font-size: 13px;
     padding: 0;
 }
+tbody tr td{    
+    height: 90px;
+   padding-top: 50px;
+   font-size: 15px;   
+   color: #0b5512;
+   
+}
+thead tr th{
+    font-size: 16px;   
+}
+/* .table-fixed tbody{
+    height:600px;
+    overflow-y: auto;
+    width: 100%;
+}
+.table-fixed thead,
+.table-fixed tbody,
+.table-fixed td,
+.table-fixed th{
+display: block;
+}
+.table-fixed tbody td,
+.table-fixed thead > tr > th{
+float: left;
+border-bottom-width: 0;
+} */

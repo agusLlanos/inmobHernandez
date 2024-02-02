@@ -34,7 +34,7 @@
           </div>
         </div>
         <div class="row" *ngFor="let inmueble of inmuebles_para_alquiler" id="row-inmue-alquiler">
-          <div class="col-6 border-bottom border-3 pb-5">
+          <div class="col-6  border-bottom border-3 pb-5">
             <div class=" text-secondary">
               <h5 class="font2"><b>{{inmueble.tipo_inmueble}} para alquiler</b></h5>
               <i class="fa-solid fa-location-dot pb-3" style="color: #4e4f50;"></i>
@@ -42,7 +42,7 @@
               <br>
               <span><b>{{inmueble.cant_habit}} habitacion/es | {{inmueble.cant_banios}} baño/s</b></span>
               <br>
-              <span>Valor: {{inmueble.costo_inicial}}</span>
+              <span>Valor: {{inmueble.signo}} {{inmueble.costo_inicial}}</span>
               <br>
               <span class="">Código: {{inmueble.id_inmueble}}</span>
               <br>
@@ -50,7 +50,7 @@
                 (click)="verDetalle(inmueble.id_inmueble)">Ver detalles</button>
             </div>
           </div>
-          <div class="col-6 border-bottom border-3">
+          <div class="col-6  border-bottom border-3">
             <div class="pb-3">
               <i class="fa-solid fa-square-check" style="color: #2b6227;"></i>
               <span class="text-success"> Disponible</span>
@@ -60,10 +60,10 @@
                 <img src="assets\imagenes\imagen_inmueble\{{imagen.nombreArchivo}}" width="250" height="150">
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-
+          </div>                   
+        </div>   
+        <div class="font2" id="contador" style="text-align: right;"> Total disponibles: {{contadorAlquiler}}</div>
+      </div>      
     </div>
   </section>
 </ng-container>
@@ -74,6 +74,5 @@
    [id_inmueble]="id_seleccionado"
    [inmuebles_alquiler]="inmuebles_para_alquiler"
    [img_inmue]="img_inmue"
-   ></app-detalle-inmueble>
-   
+   ></app-detalle-inmueble>   
 </ng-template>

@@ -5,17 +5,14 @@
     <li class="breadcrumb-item active">Disponibles para Alquiler</li>
     <li class="breadcrumb-item active" aria-current="page">Detalle Inmueble</li>
   </ol>
-  <button type="button" class="btn btn-secondary btn-sm" (click)="back()">    
+  <button type="button" class="btn btn-secondary btn-sm" (click)="back()">
     <i class="fa-solid fa-arrow-rotate-left" style="color: #ffffff;"></i>
     Volver
   </button>
 
 </nav>
 
-<h3 class="font2 pt-3">
-  Detalle Inmueble. Codigo: {{id_inmueble}}
-</h3>
-<section>
+<section class="mt-3" *ngFor="let inm of inmueb">
   <div class="card">
     <ul class="nav nav-tabs px-5" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
@@ -31,10 +28,382 @@
           role="tab" aria-controls="contact" aria-selected="false">Ubicación</button>
       </li>
     </ul>
+
     <div class="tab-content px-5 pt-5 pb-5" id="myTabContent">
       <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-        <div *ngFor="let inmueble of inmuebles_alquiler">
-          <!--<p>{{inmueble.id_inmueble}}{{inmueble.direccion}}</p> -->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-check form-switch  gap-2 d-md-flex justify-content-md-end font-" style="display: inline-flex;">
+              <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+              <label class="form-check-label" for="flexSwitchCheckChecked">Alta</label>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <label for="exampleFormControlInput1"
+                  class="form-label font- border-bottom border-3 border-success pb-2" style="display: block;">Detalle
+                  inmueble: Código
+                  {{id_inmueble}}
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-success" type="button" name="modificar" name="botonEditar"
+                      (click)="modificar()" *ngIf="nombreBoton =='Editar'; else guardar">
+                      <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i>
+                      {{nombreBoton}}</button>
+
+                      <ng-template #guardar>
+                        <button class="btn btn-success" type="button" name="modificar" name="botonEditar"
+                        (click)="modificar()"> 
+                        <i class="fa-solid fa-check" style="color: #ffffff;"></i>
+                        {{nombreBoton}}</button>
+                      </ng-template>
+                  </div>
+                </label>
+               <div class="row">
+                <div class="col-6">
+                <div class="row">
+                  <div class="col-sm-4 mt-5">
+                    <label name="tipo" class="form-check-label" for="flexCheckChecked">Tipo</label>
+
+                    <select class="form-select form-select-sm mt-2" name="tipo_inm" [disabled]="editable"
+                      *ngIf="editable; else tipo">
+                      <option name="tipo_inm" value={{inm.id_tipoInmueble}} selected>{{inm.tipo_inmueble}}</option>
+                    </select>
+
+                    <ng-template #tipo>
+                      <select class="form-select form-select-sm mt-2" name="tipo_inm" [disabled]="editable">
+                        <option name="tipo_inm" [disabled]="editable" *ngFor="let tipo of tipo_inmuebles"
+                          value={{tipo.id_tipoInmueble}}>{{tipo.descripcion}}</option>
+                      </select>
+                    </ng-template>
+
+                  </div>
+
+                  <div class="col-sm-4 mt-5">
+                    <label class="form-check-label" for="flexCheckChecked" name="motivo">Motivo</label>
+
+                    <select *ngIf="editable; else listaMotivo" class="form-select form-select-sm mt-2"
+                      [disabled]="editable" name="motivo">
+                      <option name="motivo" value=1 selected>{{inm.motivo}}</option>
+                    </select>
+
+                    <ng-template #listaMotivo>
+                      <select class="form-select form-select-sm mt-2" name="motivo" [disabled]="editable"
+                        [(ngModel)]="inm.motivo" ngDefaultControl>
+                        <option name="motivo" *ngFor="let mot of motivos" value={{mot.motivo}}>{{mot.motivo}}</option>
+                      </select>
+                    </ng-template>
+
+                  </div>
+
+                  <div class="col-sm-4 mt-5">
+                    <label name="fecha_ingreso" class="form-check-label" for="flexCheckChecked">Fecha de ingreso</label>
+                    <input name="fecha_ingreso" id="startDate" class="form-control form-control-sm mt-2" type="date"
+                      disabled ngDefaultControl [(ngModel)]="inm.fechaIngreso_date" />
+                    <span id="startDateSelected"></span>
+                  </div>
+                 
+                </div>
+
+                <div class="row g-2 mt-5">
+                  <label for="exampleFormControlInput1" class="form-label font-" style="display: inline-flex;"
+                    name="ubic">Ubicación</label>
+
+                  <div class="col-sm-4 mt-3">
+                    <label class="form-check-label" for="flexCheckChecked" name="calle">Calle</label>
+                    <input type="text" class="form-control form-control-sm mb-2 mt-2" id="calle" name="calle"
+                      [(ngModel)]="inm.calle" [disabled]="editable" ngDefaultControl>
+                  </div>
+
+                  <div class="col-sm-4 mt-3">
+                    <label class="form-check-label" for="flexCheckChecked" name="numero">Número</label>
+                    <input type="text" class="form-control form-control-sm mb-2 mt-2" name="numero"
+                      [(ngModel)]="inm.numero" [disabled]="editable" ngDefaultControl>
+                  </div>
+
+                  <div class="col-sm-4 mt-3">
+                    <label class="form-check-label" for="flexCheckChecked" name="ciudad">Ciudad</label>
+
+                    <select class="form-select form-select-sm mt-2" name="ciudad" [disabled]="editable"
+                      *ngIf="editable; else ciudad">
+                      <option name="ciudad" value={{inm.id_ciudad}} selected>{{inm.ciudad}}</option>
+                    </select>
+
+                    <ng-template #ciudad>
+                      <select class="form-select form-select-sm mt-2" [disabled]="editable" [(ngModel)]="inm.ciudad">
+                        <option [value]="ciu" *ngFor="let ciu of listCiudad" value="{{ciu.descripcion}}">
+                          {{ciu.descripcion}}</option>
+                      </select>
+                    </ng-template>
+
+                  </div>
+
+                </div>
+              </div>
+              </div>
+
+                <div class="row g-3 mt-5">
+
+                  <div class="col-sm-2 pt-4">
+                    <label for="exampleFormControlInput1" class="form-label font-" style="display: inline-flex;"
+                      name="cuenta">
+                      Cuenta con</label>
+                    <div class="form-check mx-3">
+                      <input class="form-check-input" type="checkbox" name="patio" id="flexCheckDefault"
+                        [(ngModel)]="inm.patio" (click)="prueba($event)" ngDefaultControl>
+
+                      <label class="form-check-label" for="flexCheckDefault" name="patio">
+                        Patio
+                      </label>
+                    </div>
+
+                    <div class="form-check mx-3">
+                      <input class="form-check-input" type="checkbox" name="cochera" id="flexCheckDefault"
+                        [(ngModel)]="inm.cochera" (click)="prueba($event)">
+                      <label class="form-check-label" for="flexCheckDefault" name="cochera">
+                        Cochera
+                      </label>
+                    </div>
+
+                    <div class="form-check mx-3">
+                      <input class="form-check-input" type="checkbox" name="balcon" id="flexCheckDefault"
+                        [(ngModel)]="inm.balcon" (click)="prueba($event)">
+                      <label class="form-check-label" for="flexCheckDefault" name="balcon">
+                        Balcon
+                      </label>
+                    </div>
+
+                    <div class="form-check mx-3">
+                      <input class="form-check-input" type="checkbox" name="comedor" id="flexCheckDefault"
+                        [(ngModel)]="inm.comedor" (click)="prueba($event)">
+                      <label class="form-check-label" for="flexCheckDefault" name="comedor">
+                        Comedor
+                      </label>
+                    </div>
+
+                    <div class="form-check mx-3">
+                      <input class="form-check-input" type="checkbox" name="cocina" id="flexCheckDefault"
+                        [(ngModel)]="inm.cocina" (click)="prueba($event)">
+                      <label class="form-check-label" for="flexCheckDefault" name="cocina">
+                        Cocina
+                      </label>
+                    </div>
+
+                    <div class="form-check mx-3">
+                      <input class="form-check-input" type="checkbox" name="terraza" id="flexCheckDefault"
+                        [(ngModel)]="inm.terraza" (click)="prueba($event)">
+                      <label class="form-check-label" for="flexCheckDefault" name="terraza">
+                        Terraza
+                      </label>
+                    </div>
+
+                  </div>
+
+                  <div class="col-sm-2 pt-5">
+                    <div class="form-check pt-3">
+                      <input class="form-check-input" type="checkbox" name="cloaca" id="flexCheckDefault"
+                        [(ngModel)]="inm.cloaca" (click)="prueba($event)">
+                      <label class="form-check-label" for="flexCheckDefault" name="cloaca">
+                        Cloaca
+                      </label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="lavadero" id="flexCheckDefault"
+                        [(ngModel)]="inm.lavadero" (click)="prueba($event)">
+                      <label class="form-check-label" for="flexCheckDefault" name="lavadero">
+                        Lavadero
+                      </label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="living" id="flexCheckDefault"
+                        [(ngModel)]="inm.living" (click)="prueba($event)">
+                      <label class="form-check-label" for="flexCheckDefault" name="living">
+                        Living
+                      </label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="ascensor" id="flexCheckDefault"
+                        [(ngModel)]="inm.ascensor" (click)="prueba($event)">
+                      <label class="form-check-label" for="flexCheckDefault" name="ascensor">
+                        Ascensor
+                      </label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="aire_acond" id="flexCheckDefault"
+                        [(ngModel)]="inm.aire_acond" (click)="prueba($event)">
+                      <label class="form-check-label" for="flexCheckDefault" name="aire_acond">
+                        Aire Acond.
+                      </label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="amoblado" id="flexCheckDefault"
+                        [(ngModel)]="inm.amoblado" (click)="prueba($event)">
+                      <label class="form-check-label" for="flexCheckDefault" name="amoblado">
+                        Amoblado
+                      </label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="pileta" id="flexCheckDefault"
+                        [(ngModel)]="inm.pileta" (click)="prueba($event)">
+                      <label class="form-check-label" for="flexCheckDefault" name="pileta">
+                        Pileta
+                      </label>
+                    </div>
+
+                  </div>
+
+                  <div class="col-sm-3 pt-4" id="idServicios">
+                    <label for="exampleFormControlInput1" class="form-label font-" name="servicios">Servicios</label>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="agua" id="flexCheckDefault"
+                        [(ngModel)]="inm.agua" (click)="prueba($event)">
+                      <label class="form-check-label" for="flexCheckDefault" name="agua">
+                        Agua
+                      </label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="gas" id="flexCheckDefault"
+                        [(ngModel)]="inm.gas" (click)="prueba($event)">
+                      <label class="form-check-label" for="flexCheckDefault" name="gas">
+                        Gas
+                      </label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="calefaccion" id="flexCheckDefault"
+                        [(ngModel)]="inm.calefaccion" (click)="prueba($event)">
+                      <label class="form-check-label" for="flexCheckDefault" name="calefaccion">
+                        Calefacción
+                      </label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="luz" id="flexCheckDefault"
+                        [(ngModel)]="inm.luz" (click)="prueba($event)">
+                      <label class="form-check-label" for="flexCheckDefault" name="luz">
+                        Luz
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3 pt-4">
+                    <label for="exampleFormControlInput1" class="form-label font-" style="display: inline-flex;"
+                      name="costo">Costo</label><br>
+
+                    <label class="form-check-label" for="flexCheckDefault" name="costo">Precio inicial</label>
+
+                    <input type="number" class="form-control form-control-sm mt-3" id="hab" name="hab"
+                      id="flexCheckDefault" [(ngModel)]="inm.costo_inicial" [disabled]="editable">
+
+                    <label class="form-check-label pt-3" for="flexCheckDefault">Moneda</label>
+                    <select class="form-select form-select-sm mt-2" name="moneda" [disabled]="editable"
+                      *ngIf="editable; else moneda">
+                      <option selected>{{inm.desc_moneda}}</option>
+                    </select>
+
+                    <ng-template #moneda>
+                      <select class="form-select form-select-sm mt-2" name="moneda" [disabled]="editable" [(ngModel)]="inm.id_moneda">
+                        <option name="tipo_mon" *ngFor="let mon of listMoneda" value={{mon.id_moneda}} selected >
+                          {{mon.desc_corta}}</option>
+                      </select>
+                    </ng-template>
+
+                  </div>
+                </div>
+
+                <div class="row mt-5 pb-5">
+                  <div class="col-sm-3">
+                    <label class="form-check-label pb-3 mx-3" for="flexCheckDefault" name="banios">Cant.baños</label>
+                    <input type="number" class="form-control form-control-sm" id="banios" name="banios"
+                      id="flexCheckDefault" [(ngModel)]="inm.cant_banios" [disabled]="editable" ngDefaultControl>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <label class="form-check-label pb-3 mx-3" for="flexCheckDefault" name="hab">Cant.habitac</label>
+                    <input type="number" class="form-control form-control-sm" id="hab" name="hab" id="flexCheckDefault"
+                      [(ngModel)]="inm.cant_habit" [disabled]="editable">
+                  </div>
+
+                  <div class="col-sm-3">
+                    <label class="form-check-label pb-3 mx-3" for="flexCheckDefault"
+                      name="antiguedad">Antiguedad</label>
+                    <input type="text" class="form-control form-control-sm" id="antiguedad" name="antiguedad"
+                      id="flexCheckDefault" [(ngModel)]="inm.antiguedad" [disabled]="editable">
+                  </div>
+
+                  <div class="col-sm-3">
+                    <label class="form-check-label pb-3 mx-3" for="flexCheckDefault" name="medidas">Medidas Lote</label>
+                    <input type="text" class="form-control form-control-sm" id="medidas" name="medidas"
+                      id="flexCheckDefault" [(ngModel)]="inm.medidas_lote" [disabled]="editable">
+                  </div>
+
+                </div>
+
+                <div class="row g-3 mt-3">
+                  <label for="exampleFormControlInput1" class="form-label font-" style="display: inline-flex;"
+                    name="Propietario">Propietario</label>
+
+                  <div class="col-sm-4">
+                    <label class="form-check-label" for="flexCheckChecked" name="nombrep">Nombre</label>
+                    <input type="text" class="form-control form-control-sm mb-2 mt-2 " id="nombrep" name="nombrep"
+                      id="flexCheckDefault" [(ngModel)]="inm.nombre" [disabled]="editable">
+                  </div>
+
+                  <div class="col-sm-4 mt-3">
+                    <label class="form-check-label" for="flexCheckChecked" name="apellidop">Apellido</label>
+                    <input type="text" class="form-control form-control-sm mb-2 mt-2" id="apellidop" name="apellidop"
+                      id="flexCheckDefault" [(ngModel)]="inm.apellido" [disabled]="editable">
+                  </div>
+
+                  <div class="col-sm-3 mt-3">
+                    <label class="form-check-label" for="flexCheckChecked" name="dni">Dni</label>
+                    <input type="text" class="form-control form-control-sm mb-2 mt-2" id="dni" name="dni"
+                      id="flexCheckDefault" [(ngModel)]="inm.dni" [disabled]="editable">
+                  </div>
+
+                </div>
+
+                <div class="row g-3 mt-3">
+                  <div class="col-sm-3 mt-3">
+                    <label class="form-check-label" for="flexCheckChecked" name="fecha_nac">Fecha nac.</label>
+                    <input id="startDate" class="form-control form-control-sm mt-2" type="date" name="fecha_nac"
+                      [(ngModel)]="inm.fechaNac_date" [disabled]="editable" id="flexCheckDefault" />
+                    <span id="startDateSelected"></span>
+                  </div>
+
+                  <div class="col-sm-4 mt-3">
+                    <label class="form-check-label" for="flexCheckChecked" name="telefono">Telefono</label>
+                    <input type="text" class="form-control form-control-sm mb-2 mt-2 " id="telefono" name="telefono"
+                      id="flexCheckDefault" [(ngModel)]="inm.telefono" [disabled]="editable">
+                  </div>
+
+                  <div class="col-sm-5 mt-3">
+                    <label class="form-check-label" for="flexCheckChecked" name="email">Email</label>
+                    <input type="text" class="form-control form-control-sm mb-2 mt-2" id="email" name="email"
+                      id="flexCheckDefault" [(ngModel)]="inm.email" [disabled]="editable">
+                  </div>
+
+                </div>
+
+                <div class="row g-3 mt-5">
+                  <div class="col-sm-10 mt-3">
+                    <label for="exampleFormControlInput1" class="form-label font-" id="flexCheckDefault"
+                      style="display: inline-flex;" name="observaciones">Observaciones</label>
+                    <textarea class="form-control mx-3" id="exampleFormControlTextarea1" rows="3" name="observaciones"
+                      [(ngModel)]="inm.observaciones" ngDefaultControl [disabled]="editable"
+                      ngDefaultControl></textarea>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="tab-pane fade min-vh-100" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -46,7 +415,7 @@
                   <img src="assets\imagenes\imagen_inmueble\{{imagen.nombreArchivo}}" width="300" height="250"
                     id="img-inmueble" (click)="muestraImagen(imagen.nombreArchivo)">
 
-                  <!-- Modal -->
+                  <!-- Modal 
                   <ng-template #myModalInfo let-modal>
                     <div class="modal-dialog modal-lg ">
                       <div class="">
@@ -59,7 +428,7 @@
                         </div>
                       </div>
                     </div>
-                  </ng-template>
+                  </ng-template> -->
                 </div>
               </div>
             </div>
@@ -69,10 +438,11 @@
 
       <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
         <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4291.585136597917!2d-60.206193629985215!3d-33.33855379690298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b75d797033c9f9%3A0x6a8f3703b02bc5d7!2sRivadavia%20547%2C%20San%20Nicol%C3%A1s%20de%20Los%20Arroyos%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1685497551372!5m2!1ses-419!2sar"
-        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"></iframe>
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4291.585136597917!2d-60.206193629985215!3d-33.33855379690298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b75d797033c9f9%3A0x6a8f3703b02bc5d7!2sRivadavia%20547%2C%20San%20Nicol%C3%A1s%20de%20Los%20Arroyos%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1685497551372!5m2!1ses-419!2sar"
+          width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
+
     </div>
   </div>
 </section>

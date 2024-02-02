@@ -24,6 +24,7 @@ import { ModalComponent } from './modal/modalExito/modal.component';
 import { DisponibleAlquilerComponent } from './components/Admin-folder/disponible-alquiler/disponible-alquiler.component';
 import { DisponibleVentaComponent } from './components/Admin-folder/disponible-venta/disponible-venta.component';
 import { DetalleInmuebleComponent } from './components/Admin-folder/detalle-inmueble/detalle-inmueble.component';
+import { ModalEditarComponent } from './modal/modal-editar/modal-editar.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { DetalleInmuebleComponent } from './components/Admin-folder/detalle-inmu
      DisponibleAlquilerComponent,
      DisponibleVentaComponent,
      DetalleInmuebleComponent,
+     ModalEditarComponent,
   ],
   imports: [
     BrowserModule,

@@ -244,6 +244,18 @@
                 <input type="number" class="form-control form-control-sm mt-2" id="costo_inicial" placeholder=""
                   name="costo_inicial" [(ngModel)]="model.costo_inicial">
               </div>
+              <div class="col-sm-4 mt-5">
+                <label class="form-check-label" for="flexCheckChecked">
+                  Moneda
+                </label>
+                <select class="form-select form-select-sm mt-2" aria-label="Default select example"
+                  [(ngModel)]="model.id_moneda" (change)="prueba(model.id_moneda)">
+                  <option selected>Moneda</option>
+                  <option value=1>Peso</option>
+                  <option value=2>Dolar</option>
+                  <option value=3>Euro</option>
+                </select>
+              </div>
             </div>
 
             <div class="row g-3 mt-3">
@@ -348,8 +360,7 @@
           </ng-container>
           <ng-container *ngIf="valorRadioButton == 'existe'">
             <div class="col-sm-12 ">
-              <select class="form-select form-select-sm" aria-label="Default select example"
-                [(ngModel)]="model.id_propietario">
+              <select class="form-select form-select-sm" aria-label="Default select example"[(ngModel)]="model.id_propietario">
                 <option value={{prop.id_propietario}} *ngFor="let prop of propietarios">
                   {{prop.apeNom}}
                 </option>
@@ -369,8 +380,8 @@
               <input class="form-control form-control-sm" id="formFileSm" type="file" multiple
                 (change)="loadFileImage($event)">
               <textarea rows="3" class="form-control form-control-sm mb-2 mt-4" id="descripcion" name="descripcion"
-                [(ngModel)]="imagen.descripcion" placeholder="descripcion"></textarea>             
-            </div>            
+                [(ngModel)]="imagen.descripcion" placeholder="descripcion"></textarea>
+            </div>
           </div>
         </div>
       </div>

@@ -15,6 +15,7 @@ export class DisponibleVentaComponent {
   valorSelect: number = 0;
   var: number;
   img_inmue : imagen_inmueble [] = [];
+  contadorVentas : number = 0;
 
   ngOnInit(): void {
     this.listarVentas();
@@ -27,10 +28,10 @@ export class DisponibleVentaComponent {
     if (this.valorSelect == 0) {
       this.ApiInmueble.listarInmuebles_xVentas_disponibles().subscribe(data => {
         data.inmueble.forEach((inmue: any) => {
-          this.inmuebles_para_Ventas.push(new inmueble(inmue))
-        })
-      })
-      console.log(this.inmuebles_para_Ventas)
+          this.inmuebles_para_Ventas.push(new inmueble(inmue))          
+        })        
+        this.contadorVentas = this.inmuebles_para_Ventas.length;          
+      })           
     }
     if(this.valorSelect == 1){
       this.ApiInmueble.listarInmuebles_xVentasdisponibles_desc().subscribe(data => {

@@ -29,3 +29,16 @@
     max-width: 100% !important;
 }
 
+#idServicios{
+    margin-left: 10px;
+}
+input {
+    border-color: #59945f;
+}
+textarea, select{
+    border-color: #59945f;   
+}
+button{
+    width: 175px;
+    height: 40px;
+}

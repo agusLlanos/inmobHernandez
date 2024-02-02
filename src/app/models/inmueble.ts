@@ -1,7 +1,8 @@
 export class inmueble {
     id_inmueble: number
     fecha_ingreso: Date
-    fechaIngreso_muestra: string
+    fechaIngreso_muestra: any
+    fechaIngreso_date : any
     tipo_inmueble: string
     motivo: string
     ciudad: string
@@ -12,11 +13,11 @@ export class inmueble {
     medidas_lote: string
     observaciones: string
     propietario: string
-    direccion ?: string
+    direccion?: string
 
     id_tipoInmueble: number
     id_motivo: number
-    id_ciudad : number    
+    id_ciudad: number
     patio: boolean
     cochera: boolean
     balcon: boolean
@@ -39,22 +40,27 @@ export class inmueble {
     apellido: string
     dni: number
     telefono: string
-    fecha_nac : Date
-    email : string
-    id_propietario : number
-    cloaca : boolean
-    costo_inicial : number
-   
+    fecha_nac: Date
+    fechaNacMuestra: any
+    fechaNac_date : any
+    email: string
+    id_propietario: number
+    cloaca: boolean
+    costo_inicial: number
+    signo: string
+    desc_moneda: string
+    id_moneda: number
 
     constructor(inmue: any) {
         this.id_inmueble = inmue.id_inmueble
-        this.id_propietario = inmue.id_propietario 
+        this.id_propietario = inmue.id_propietario
         this.fecha_ingreso = inmue.fecha_ingreso
-        this.fechaIngreso_muestra = new Date(this.fecha_ingreso).toLocaleDateString()
+        this.fechaIngreso_muestra = (this.fecha_ingreso != null) ? new Date(this.fecha_ingreso).toLocaleDateString() : undefined
+        this.fechaIngreso_date = (this.fecha_ingreso != null) ? new Date(this.fecha_ingreso).toISOString().split('T')[0] : undefined
         this.tipo_inmueble = this.convertirMayuscula(inmue.tipo)
-        this.motivo = inmue.descripcion
-        this.ciudad =  this.convertirMayuscula(inmue.ciudad)
-        this.calle =  this.convertirMayuscula(inmue.calle)
+        this.motivo = this.sacarEspacio(inmue.descripcion)
+        this.ciudad = this.convertirMayuscula(inmue.ciudad)
+        this.calle = this.convertirMayuscula(inmue.calle)
         this.numero = inmue.numero
         this.direccion = ` ${this.convertirMayuscula(inmue.calle)} ${inmue.numero} `
         this.antiguedad = inmue.antiguedad
@@ -66,6 +72,8 @@ export class inmueble {
         this.dni = inmue.dni
         this.telefono = inmue.telefono
         this.fecha_nac = inmue.fecha_nac
+        this.fechaNacMuestra = (this.fecha_nac != null) ? new Date(this.fecha_nac).toLocaleDateString() : undefined
+        this.fechaNac_date = (this.fecha_nac != null) ? new Date(this.fecha_nac).toISOString().split('T')[0] : undefined
         this.email = inmue.email
         this.propietario = `${inmue.nombre} ${inmue.apellido}`
         this.id_tipoInmueble = inmue.id_tipoInmueble
@@ -91,14 +99,39 @@ export class inmueble {
         this.cant_banios = inmue.cant_banios
         this.cant_habit = inmue.cant_habit
         this.costo_inicial = inmue.costo_inicial
+        this.signo = this.sacarEspacio(inmue.signo)
+        this.desc_moneda = this.sacarEspacio(inmue.desc_corta)
+        this.id_moneda = this.id_moneda
     }
-   
-    variable : string = '';
-    convertirMayuscula(str:string){    
-        if(str != null){
-          this.variable = str.charAt(0).toUpperCase() + str.slice(1); 
-        }   
+
+    variable: string = '';
+    convertirMayuscula(str: string) {
+        if (str != null) {
+            this.variable = str.charAt(0).toUpperCase() + str.slice(1);
+        }
         return this.variable;
+    }
+
+    sacarEspacio(str: string) {
+        if (str != null) {
+            this.variable = str.trim();
+        }
+        return this.variable;
+    }
+
+    splitted: any;
+    fecha1: Date
+    options: any;
+    fecha(fecha: Date) {
+
+
+        this.splitted = 'ISO';
+        this.options = {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+
+        };
     }
 
 }

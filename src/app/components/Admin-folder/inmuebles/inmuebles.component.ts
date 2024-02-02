@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { ApiService } from 'src/app/service/api.service';
 import { inmueble } from 'src/app/models/inmueble';
+import {  ModalEditarComponent } from 'src/app/modal/modal-editar/modal-editar.component';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+
+
 
 @Component({
   selector: 'app-inmuebles',
@@ -8,8 +12,9 @@ import { inmueble } from 'src/app/models/inmueble';
   styleUrls: ['./inmuebles.component.css']
 })
 export class InmueblesComponent implements OnInit {
-  constructor(private ApiService: ApiService) { }
+  constructor(private ApiService: ApiService, public modal : NgbModal) { }
   inmuebles : inmueble[] = [];
+
   ngOnInit(): void {    
     this.llenarData()
   }
@@ -18,6 +23,15 @@ export class InmueblesComponent implements OnInit {
       data.inmueble.forEach((inmue: any) => {
         this.inmuebles.push(new inmueble(inmue))        
       })
+      console.log(this.inmuebles)
     })
   }
+  // @ViewChild(ModalEditarComponent) child: ModalEditarComponent;
+  id_seleccionado : number; 
+
+  openModal(id : number){  
+  const x= this.modal.open(ModalEditarComponent, { size: 'lg' });
+  x.componentInstance.datos ={idSeleccionado: id}
+  }
+
 }
