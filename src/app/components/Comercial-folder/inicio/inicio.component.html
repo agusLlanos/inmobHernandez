@@ -53,22 +53,24 @@
 <section id="card-row">
   <div class="container">
     <div class="row">
-      <div class="col pt-5">
+      <div class="col-3 pt-5" *ngFor="let inmue of inmueble_ventas">
         <div class="card pt-4 px-4 border border-3" id="idCard" style="margin: auto;">
-          <div class="family text-danger">VENTA</div>         
-          <img class="card-img-top" src="../assets/imagenes/casa1.jpg" alt="Card image cap">          
+          <div class="family text-danger">VENTA</div>
+          <img class="card-img-top" src="../assets/imagenes/casa1.jpg" alt="Card image cap">
           <div class="">
-            <h5 class="">Italia 350</h5>
+            <h5 class="pt-2">{{inmue.calle}} {{inmue.numero}}</h5>
             <i class="fa-solid fa-sign-hanging" style="color: #343232;"></i>
-            <span>CASA</span>
+            <span> {{inmue.motivo}}</span>
             <br>
             <i class="fa-solid fa-map-location-dot" style="color: #343232;"></i>
-            <span>San Nicolas de los Arroyos</span>
+            <span> {{inmue.ciudad}}</span>
             <button type="button" class="btn btn-success mx-2 fs-5 mt-3" id="btnConsultas">Consultar</button>
           </div>
-          
+
         </div>
       </div>
+
+      <!--FIN CARD FILA 1
 
       <div class="col pt-5">
         <div class="card pt-4 px-4 border border-3 margin-card" id="idCard" style="margin: auto;">
@@ -102,10 +104,9 @@
         </div>
       </div>
 
-      <!--FIN CARD FILA 1-->
+      
 
-      <!--INICIO CARD FILA 2-->
-
+      
       <div class="col pt-5">
         <div class="card pt-4 px-4 border border-3 margin-card">
           <div class="family text-danger">VENTA</div>
@@ -154,9 +155,7 @@
         </div>
       </div>
 
-      <!--FIN CARD FILA 2-->
-
-      <!--INICIO CARD FILA 3-->
+      
 
       <div class="col pt-5">
         <div class="card pt-4 px-4 border border-3 margin-card">
@@ -192,6 +191,7 @@
       </div>
 
     </div>
-    <!--FIN CARD FILA 3-->
+    FIN CARD FILA 3-->
+    </div>
   </div>
 </section>

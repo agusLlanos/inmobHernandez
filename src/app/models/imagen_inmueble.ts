@@ -6,22 +6,22 @@ export class imagen_inmueble{
     nombreArchivo : any
 
     constructor(imag : any){
-        this.id_inmueble = imag.id_inmueble
-        this.descripcion = imag.descripcion
-        this.Archivo = imag.Archivo
-        this.ruta = imag.ruta
-        this.nombreArchivo = this.convertirNombreArchivo(imag.ruta)
+        this.id_inmueble = imag.id_inmueble || null
+        this.descripcion = imag.descripcion || null
+        this.Archivo = imag.Archivo || null
+        this.ruta = imag.ruta || null
+        this.nombreArchivo = this.convertirNombreArchivo(imag.ruta) || null
     }       
-
+     variable : any = null;
     convertirNombreArchivo(ruta : string){
        var separador : string = "\\";
         var array : string [];  
 
         if(ruta != null){
             array = ruta.split(separador);  
-            var variable = array.at(-1) 
+            this.variable = array.at(-1) 
         }
-        return variable;
+        return this.variable;
     }
 
 }

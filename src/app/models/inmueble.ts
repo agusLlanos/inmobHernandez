@@ -1,3 +1,5 @@
+import { imagen_inmueble } from "./imagen_inmueble"
+
 export class inmueble {
     id_inmueble: number
     fecha_ingreso: Date
@@ -48,60 +50,63 @@ export class inmueble {
     cloaca: boolean
     costo_inicial: number
     signo: string
-    desc_moneda: string
-    id_moneda: number
-
+    desc_moneda: string    
+    id_moneda: number    
+    list_imagen : imagen_inmueble[] 
+    primer_imagen : string
     constructor(inmue: any) {
-        this.id_inmueble = inmue.id_inmueble
-        this.id_propietario = inmue.id_propietario
-        this.fecha_ingreso = inmue.fecha_ingreso
-        this.fechaIngreso_muestra = (this.fecha_ingreso != null) ? new Date(this.fecha_ingreso).toLocaleDateString() : undefined
+        this.id_inmueble = inmue.id_inmueble || null
+        this.id_propietario = inmue.id_propietario|| null 
+        this.fecha_ingreso = inmue.fecha_ingreso|| null 
+        this.fechaIngreso_muestra = (this.fecha_ingreso != null) ? new Date(this.fecha_ingreso).toLocaleDateString() : null
         this.fechaIngreso_date = (this.fecha_ingreso != null) ? new Date(this.fecha_ingreso).toISOString().split('T')[0] : undefined
-        this.tipo_inmueble = this.convertirMayuscula(inmue.tipo)
+        this.tipo_inmueble = inmue.tipo|| null
         this.motivo = this.sacarEspacio(inmue.descripcion)
         this.ciudad = this.convertirMayuscula(inmue.ciudad)
         this.calle = this.convertirMayuscula(inmue.calle)
-        this.numero = inmue.numero
+        this.numero = inmue.numero|| null
         this.direccion = ` ${this.convertirMayuscula(inmue.calle)} ${inmue.numero} `
-        this.antiguedad = inmue.antiguedad
-        this.estado = inmue.estado
-        this.medidas_lote = inmue.medidas_lote
-        this.observaciones = inmue.observaciones
-        this.nombre = inmue.nombre
-        this.apellido = inmue.apellido
-        this.dni = inmue.dni
-        this.telefono = inmue.telefono
-        this.fecha_nac = inmue.fecha_nac
+        this.antiguedad = inmue.antiguedad|| null
+        this.estado = inmue.estado|| null
+        this.medidas_lote = inmue.medidas_lote|| null
+        this.observaciones = inmue.observaciones|| null
+        this.nombre = inmue.nombre|| null
+        this.apellido = inmue.apellido|| null
+        this.dni = inmue.dni|| null
+        this.telefono = inmue.telefono|| null
+        this.fecha_nac = inmue.fecha_nac|| null       
         this.fechaNacMuestra = (this.fecha_nac != null) ? new Date(this.fecha_nac).toLocaleDateString() : undefined
         this.fechaNac_date = (this.fecha_nac != null) ? new Date(this.fecha_nac).toISOString().split('T')[0] : undefined
-        this.email = inmue.email
-        this.propietario = `${inmue.nombre} ${inmue.apellido}`
-        this.id_tipoInmueble = inmue.id_tipoInmueble
-        this.id_motivo = inmue.id_motivo
-        this.id_ciudad = inmue.id_ciudad
-        this.cloaca = inmue.cloaca
-        this.patio = inmue.patio
-        this.cochera = inmue.cochera
-        this.balcon = inmue.balcon
-        this.terraza = inmue.terraza
-        this.comedor = inmue.comedor
-        this.cocina = inmue.cocina
-        this.pileta = inmue.pileta
-        this.lavadero = inmue.lavadero
-        this.living = inmue.living
-        this.ascensor = inmue.ascensor
-        this.aire_acond = inmue.aire_acond
-        this.amoblado = inmue.amoblado
-        this.agua = inmue.agua
-        this.gas = inmue.gas
-        this.calefaccion = inmue.calefaccion
-        this.luz = inmue.luz
-        this.cant_banios = inmue.cant_banios
-        this.cant_habit = inmue.cant_habit
-        this.costo_inicial = inmue.costo_inicial
-        this.signo = this.sacarEspacio(inmue.signo)
-        this.desc_moneda = this.sacarEspacio(inmue.desc_corta)
-        this.id_moneda = this.id_moneda
+        this.email = inmue.email || null
+        this.propietario = `${inmue.nombre} ${inmue.apellido}` || ''
+        this.id_tipoInmueble = inmue.id_tipoInmueble || null
+        this.id_motivo = inmue.id_motivo || null
+        this.id_ciudad = inmue.id_ciudad || null
+        this.cloaca = inmue.cloaca || null
+        this.patio = inmue.patio || null
+        this.cochera = inmue.cochera || null
+        this.balcon = inmue.balcon || null
+        this.terraza = inmue.terraza || null
+        this.comedor = inmue.comedor || null
+        this.cocina = inmue.cocina || null
+        this.pileta = inmue.pileta || null
+        this.lavadero = inmue.lavadero || null
+        this.living = inmue.living || null
+        this.ascensor = inmue.ascensor || null
+        this.aire_acond = inmue.aire_acond || null
+        this.amoblado = inmue.amoblado || null
+        this.agua = inmue.agua || null
+        this.gas = inmue.gas || null
+        this.calefaccion = inmue.calefaccion || null
+        this.luz = inmue.luz || null
+        this.cant_banios = inmue.cant_banios || null
+        this.cant_habit = inmue.cant_habit || null
+        this.costo_inicial = inmue.costo_inicial || null
+        this.signo = this.sacarEspacio(inmue.signo) || ''
+        this.desc_moneda = this.sacarEspacio(inmue.moneda) || ''
+        this.id_moneda = inmue.id_moneda || null
+        this.list_imagen = []
+
     }
 
     variable: string = '';

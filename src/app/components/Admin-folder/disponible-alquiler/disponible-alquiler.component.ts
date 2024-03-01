@@ -56,16 +56,18 @@ export class DisponibleAlquilerComponent {
   personasMap: any[] = [];
 
   listarImg_Inmuebles() {
+    this.img_inmue = [];
+
     this.ApiInmueble.listar_img_inmuebles().subscribe(data => {
       data.img_inmueble.forEach((inmue: any) => {
         this.img_inmue.push(new imagen_inmueble(inmue))
       })
       this.filtrarIMG();
     })
-    //console.log(this.img_inmue);
+    console.log(this.img_inmue);
   }
 
-  array_img: any[] = [];
+  array_img: any[] ;
 
   filtrarIMG() {
     this.personasMap = this.img_inmue.map(item => {
@@ -74,7 +76,7 @@ export class DisponibleAlquilerComponent {
     var personasMapArr = new Map(this.personasMap);
 
     this.array_img = [...personasMapArr.values()];
-
+    console.log("hola")
     console.log(this.array_img);
   }
 
