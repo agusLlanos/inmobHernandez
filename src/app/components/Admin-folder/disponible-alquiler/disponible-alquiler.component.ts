@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ApiInmueble } from 'src/app/service/api.inmueble';
 import { inmueble } from 'src/app/models/inmueble';
 import { imagen_inmueble } from 'src/app/models/imagen_inmueble';
+import { ApiImagen } from 'src/app/service/api.imagen';
 
 @Component({
   selector: 'app-disponible-alquiler',
@@ -9,11 +10,11 @@ import { imagen_inmueble } from 'src/app/models/imagen_inmueble';
   styleUrls: ['./disponible-alquiler.component.css']
 })
 export class DisponibleAlquilerComponent {
-  constructor(private ApiInmueble: ApiInmueble) { }
+  constructor(private ApiInmueble: ApiInmueble, private apiImagen : ApiImagen) { }
 
   ngOnInit(): void {
     this.listarAlquileres();
-    this.listarImg_Inmuebles();
+    //this.listarImg_Inmuebles();
   }
 
   inmuebles_para_alquiler: inmueble[];
@@ -28,20 +29,23 @@ export class DisponibleAlquilerComponent {
   listarAlquileres() {
     this.inmuebles_para_alquiler = [];
 
-    if (this.valorSelect == 0) {
+    if (this.valorSelect == 0) {      
       this.ApiInmueble.listarInmuebles_xAlquiler_disponibles().subscribe(data => {
         data.inmueble.forEach((inmue: any) => {
           this.inmuebles_para_alquiler.push(new inmueble(inmue))
         })
         this.contadorAlquiler = this.inmuebles_para_alquiler.length
-        //console.log(this.contadorAlquiler)
+        this.cargarImg()        
+        console.log(this.inmuebles_para_alquiler)  
       })
+      
     }
     if (this.valorSelect == 1) {
       this.ApiInmueble.listarInmuebles_xAlquiler_disponibles_desc().subscribe(data => {
         data.inmueble.forEach((inmue: any) => {
           this.inmuebles_para_alquiler.push(new inmueble(inmue))
         })
+        this.cargarImg()
       })
     }
     if (this.valorSelect == 2) {
@@ -49,10 +53,24 @@ export class DisponibleAlquilerComponent {
         data.inmueble.forEach((inmue: any) => {
           this.inmuebles_para_alquiler.push(new inmueble(inmue))
         })
+        this.cargarImg()
       })
     }
   }
 
+  cargarImg(){
+    this.inmuebles_para_alquiler.forEach((inm : inmueble) =>{
+      this.apiImagen.listarImagen_porID(inm.id_inmueble).subscribe(data =>{
+        data.imagen.forEach((img : imagen_inmueble) =>{
+          inm.imagen = new imagen_inmueble(img)
+        })            
+      })          
+    }) 
+  }
+
+
+ 
+/*
   personasMap: any[] = [];
 
   listarImg_Inmuebles() {
@@ -62,7 +80,7 @@ export class DisponibleAlquilerComponent {
       data.img_inmueble.forEach((inmue: any) => {
         this.img_inmue.push(new imagen_inmueble(inmue))
       })
-      this.filtrarIMG();
+      //this.filtrarIMG();
     })
     console.log(this.img_inmue);
   }
@@ -79,7 +97,7 @@ export class DisponibleAlquilerComponent {
     console.log("hola")
     console.log(this.array_img);
   }
-
+*/
   onChange(variable: number) {
     this.var = variable;
     this.listarAlquileres();
@@ -92,5 +110,6 @@ export class DisponibleAlquilerComponent {
 
   volver(flag : boolean){
     this.bandera = flag;
+    this.listarAlquileres();
   }
 }

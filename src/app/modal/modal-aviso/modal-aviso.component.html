@@ -1,0 +1,27 @@
+<div class="modalc">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Atención!!!</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                (click)="cerrar()"></button>
+        </div>
+    </div>
+    <div class="modalc-container">
+        <div class="modal-body pb-4 pt-3">
+            {{cuerpo}}
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-danger btn-block" (click)="changeEstadoInmue()">Si</button>
+                <button class="btn btn-secondary btn-block" (click)="cerrar()">Cancelar</button>
+
+           <!--  <ng-container *ngIf="estado == 'eliminar'; else otro">
+                <button class="btn btn-danger btn-block" (click)="eliminarProd()">Eliminar</button>
+                <button class="btn btn-secondary btn-block" (click)="close()">Cancelar</button>
+            </ng-container>
+            <ng-template #otro>
+                <button class="btn btn-danger btn-block" (click)="quedar()">Si</button>
+                <button class="btn btn-secondary btn-block" (click)="close()">No</button>
+            </ng-template> -->
+        </div>       
+    </div>
+</div>

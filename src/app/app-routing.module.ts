@@ -15,6 +15,10 @@ import { InmueblesComponent } from './components/Admin-folder/inmuebles/inmueble
 import { NuevoInmuebleComponent } from './components/Admin-folder/nuevo-inmueble/nuevo-inmueble.component';
 import { DisponibleAlquilerComponent } from './components/Admin-folder/disponible-alquiler/disponible-alquiler.component';
 import { DisponibleVentaComponent } from './components/Admin-folder/disponible-venta/disponible-venta.component';
+import { DetalleInmuebleComponent } from './components/Admin-folder/detalle-inmueble/detalle-inmueble.component';
+import { ListadoPropComponent } from './components/Admin-folder/PROPIETARIOS/listado-prop/listado-prop.component';
+import { NuevoPropietarioComponent } from './components/Admin-folder/PROPIETARIOS/nuevo-propietario/nuevo-propietario.component';
+
 
 const routes: Routes = [
 
@@ -37,7 +41,9 @@ const routes: Routes = [
       { path: 'Inmuebles', component: InmueblesComponent },
       {path : 'NuevoInmueble', component : NuevoInmuebleComponent},
       {path: 'Disponible-alquiler', component : DisponibleAlquilerComponent},
-      {path: 'Disponible-venta', component : DisponibleVentaComponent}
+      {path: 'Disponible-venta', component : DisponibleVentaComponent},
+      {path: 'Listado-Propietarios', component : ListadoPropComponent},
+      {path: 'NuevoPropietario', component : NuevoPropietarioComponent}
     ]
   },
   { path: '', pathMatch: 'full', redirectTo: 'Comercial/Inicio' },
@@ -48,3 +54,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

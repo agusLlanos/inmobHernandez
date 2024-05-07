@@ -1,0 +1,92 @@
+<div class="pagetitle">
+  <h3 class="font- prueba2">Listado de propietarios</h3>
+  <nav>
+    <ul class="breadcrumb">
+      <li class="breadcrumb-item"><a href="">Home</a></li>
+      <li class="breadcrumb-item active">Propietarios</li>
+      <li class="breadcrumb-item active">Listado propietarios</li>
+    </ul>
+  </nav>
+</div><!-- End Page Title -->
+<section class="section dashboard">
+  <div class="container" id="row1">
+    <div class="row">
+      <!--
+        <div class="col-4">
+          <div class="input-group rounded mt-4 mb-4">
+            <input type="search" class="form-control rounded" placeholder="Buscar por producto..." aria-label="Search"
+              aria-describedby="search-addon"  />
+            <button type="button" class="btn btn-primary">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+        
+      <div class="col-4 mt-4 mb-4 d-flex  justify-content-center">
+        <i class="bi bi-tags"></i>
+        <label class="form-check-label mx-3" for="flexCheckChecked" name="categoria"> Tipo Inmueble</label>
+        <select class="form-select-sm" name="tipo" style="height: 28px;">
+          <option value="0">Todos los inmuebles</option>
+          <option value="0">Nombre</option>
+          <option value="0">Departamento</option>
+          <option value="0">Lote</option>
+          <option value="0">Galpon</option>
+          <option value="0">Local</option>
+          <option value="0">Campo</option>
+        </select>
+      </div>
+      <div class="col-4 mt-4 mb-4 d-flex  justify-content-center">
+        <i class="bi bi-tags"></i>
+        <label class="form-check-label px-3" for="flexCheckChecked" name="categoria"> Estado</label>
+        <select class="form-select-sm" name="tipo" style="width: 170px; height: 28px;">
+          <option value="">Todo</option>
+          <option value="1">Alta</option>
+          <option value="0">Baja</option>
+        </select>
+      </div>
+-->
+      <div class="col-12 d-flex justify-content-end mt-4 mb-4">
+        <button class="btn btn-danger" id="btnAgregar" type="button" name="agregar" name="botonAgregar">
+          <a [routerLink]="'/Admin/NuevoPropietario'"> <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
+            Propietario
+          </a>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-12">
+      <div class="row">
+        <div class="container">
+          <table class="table custom-table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Apellido y nombre</th>
+                <th scope="col">DNI</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">email</th>
+                <th scope="col">Fecha de Nac.</th>
+                <th scope="col">#</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of prop">
+                <td>{{p.id_propietario}}</td>
+                <td>{{p.apeNom}}</td>
+                <td>{{p.dni}}</td>
+                <td>{{p.telefono}}</td>
+                <td>{{p.email}}</td>
+                <td>{{p.fechaNac_muestra}}</td>
+                <td>
+                  <i class="fa-solid fa-pen-to-square fa-lg" style="color: #d72f23;" title="Editar"
+                    (click)="openModal_editar(p.id_propietario)"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

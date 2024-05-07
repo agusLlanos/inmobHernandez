@@ -19,7 +19,7 @@ export class ApiInmueble {
 
     private urlApiPost = 'https://localhost:7141/inmueble/agregar'
     private urlApiGet = 'https://localhost:7141/propietario/listar';
-    private urlApiPostImagen = 'https://localhost:7141/inmueble/cargarImagen';
+    private urlApiPostImagen = '';
     private urlApiGetAlquileres = 'https://localhost:7141/inmueble/listar_Alquileres_Disponibles'
     private urlApiGetAlquileres_asc = 'https://localhost:7141/inmueble/listar_Alquileres_Disponibles_asc'
     private urlApiGetAlquileres_desc = 'https://localhost:7141/inmueble/listar_Alquileres_Disponibles_desc'
@@ -34,6 +34,7 @@ export class ApiInmueble {
     private apiListMotivos = 'https://localhost:7141/inmueble/listar_tipoMotivos'
     private apiUpdateInmueble = 'https://localhost:7141/inmueble/modificar'
     private apiListarInmueble_VentasTop8 = 'https://localhost:7141/inmueble/listar_ventas'
+    private apiUpdateEstadoInmue = 'https://localhost:7141/inmueble/cambiarEstado'
 
     createNewInmueble(inmueb: inmueble): Observable<inmueble> {
         return this.http.post<any>(this.urlApiPost, inmueb);
@@ -49,8 +50,8 @@ export class ApiInmueble {
         inmue.Archivo.forEach(img => {
             formData.append('file', (<any>img))
         })
-
-        this.urlApiPostImagen = `${this.urlApiPostImagen}?id_inmueble=${inmue.id_inmueble}&descripcion=${inmue.descripcion}`
+        this.urlApiPostImagen = 'https://localhost:7141/inmueble/cargarImagen'
+        this.urlApiPostImagen = `${this.urlApiPostImagen}?id_inmueble=${inmue.id_inmueble}&descripcion=${inmue.descripcion}&imagenPerfil=${inmue.imagenPerfil}`
         return this.http.post<any>(this.urlApiPostImagen, formData);
     }
 
@@ -99,6 +100,9 @@ export class ApiInmueble {
     }
     public updateInmueble(inmue: inmueble): Observable<inmueble> {
         return this.http.put<inmueble>(this.apiUpdateInmueble, inmue);
+    }
+    public updateEstadoInmue(inmue : inmueble):Observable<inmueble>{
+        return this.http.put<inmueble>(this.apiUpdateEstadoInmue,inmue);
     }
     public listarVentas_Top8(): Observable<any>{
         return this.http.get<inmueble>(this.apiListarInmueble_VentasTop8)

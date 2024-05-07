@@ -30,12 +30,7 @@
                 </label>
                 <select [(ngModel)]="model.id_tipoInmueble" class="form-select form-select-sm mt-2">
                   <option selected>Seleccione...</option>
-                  <option value=1>Casa</option>
-                  <option value=2>Departamento</option>
-                  <option value=3>Lote</option>
-                  <option value=4>Galpón</option>
-                  <option value=5>Local</option>
-                  <option value=6>Campo</option>
+                  <option *ngFor="let ti of tipo_inm"  value={{ti.id_tipoInmueble}}>{{ti.descripcion}}</option>                  
                 </select>
               </div>
 
@@ -55,7 +50,8 @@
                 <label class="form-check-label" for="flexCheckChecked">
                   Fecha de Ingreso
                 </label>
-                <input [(ngModel)]="model.fecha_ingreso" id="startDate" class="form-control form-control-sm mt-2" type="date" [(ngModel)]="dateToday" />
+                <input [(ngModel)]="model.fecha_ingreso" id="startDate" class="form-control form-control-sm mt-2"
+                  type="date" [(ngModel)]="dateToday" />
                 <span id="startDateSelected"></span>
               </div>
 
@@ -73,9 +69,8 @@
               <div class="col-sm-5 ">
                 <select class="form-select form-select-sm" aria-label="Default select example"
                   [(ngModel)]="model.id_ciudad">
-                  <option selected>Ciudad</option>
-                  <option value=1>San Nicolas</option>
-                  <option value=2>Villa constitucion</option>
+                  <option value="0">Ciudad</option>
+                  <option *ngFor="let c of ciudades"  value={{c.id_ciudad}}>{{c.descripcion}}</option>                  
                 </select>
               </div>
             </div>
@@ -268,7 +263,7 @@
             </div>
             <div class="row">
               <div class="col-sm-12 pt-3">
-                <button type="submit" class="btn btn-success" (click)="onSubmit()">Guardar</button>
+                <button type="submit" class="btn btn-success" (click)="cargarNuevoInmueble()">Guardar</button>
               </div>
             </div>
           </div>
@@ -359,7 +354,8 @@
           </ng-container>
           <ng-container *ngIf="valorRadioButton == 'existe'">
             <div class="col-sm-12 ">
-              <select class="form-select form-select-sm" aria-label="Default select example"[(ngModel)]="model.id_propietario">
+              <select class="form-select form-select-sm" aria-label="Default select example"
+                [(ngModel)]="model.id_propietario">
                 <option value={{prop.id_propietario}} *ngFor="let prop of propietarios">
                   {{prop.apeNom}}
                 </option>
@@ -375,12 +371,29 @@
             <h5 class="card-tittle font2- pb-3">
               Cargar imagenes
             </h5>
-            <div class="mb-3 pb-4">
-              <input class="form-control form-control-sm" id="formFileSm" type="file" multiple
+            <ngb-accordion [destroyOnHide]="false">
+              <ngb-panel title="Imagen de perfil">
+                <ng-template ngbPanelContent>
+                  <input class="form-control form-control-sm" id="formFileSm" type="file"
+                  (change)="loadFileImage($event, bandera = 1)">
+                </ng-template>
+              </ngb-panel>
+            </ngb-accordion>  
+
+            <ngb-accordion [destroyOnHide]="false">
+              <ngb-panel title="Imagenes del inmueble">
+                <ng-template ngbPanelContent>
+                  <input class="form-control form-control-sm" id="formFileSm" type="file" multiple
+                  (change)="loadFileImage($event, bandera = 0)">
+                </ng-template>
+              </ngb-panel>
+            </ngb-accordion>       
+
+            <!--  <input class="form-control form-control-sm" id="formFileSm" type="file" multiple
                 (change)="loadFileImage($event)">
               <textarea rows="3" class="form-control form-control-sm mb-2 mt-4" id="descripcion" name="descripcion"
-                [(ngModel)]="imagen.descripcion" placeholder="descripcion"></textarea>
-            </div>
+                [(ngModel)]="imagen.descripcion" placeholder="descripcion"></textarea> -->
+            
           </div>
         </div>
       </div>

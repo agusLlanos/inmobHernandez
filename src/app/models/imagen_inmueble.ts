@@ -4,6 +4,7 @@ export class imagen_inmueble{
     Archivo : any[]
     ruta : string
     nombreArchivo : any
+    imagenPerfil : boolean
 
     constructor(imag : any){
         this.id_inmueble = imag.id_inmueble || null
@@ -11,8 +12,10 @@ export class imagen_inmueble{
         this.Archivo = imag.Archivo || null
         this.ruta = imag.ruta || null
         this.nombreArchivo = this.convertirNombreArchivo(imag.ruta) || null
+        this.imagenPerfil = imag.imagenPerfil || null
     }       
      variable : any = null;
+     
     convertirNombreArchivo(ruta : string){
        var separador : string = "\\";
         var array : string [];  

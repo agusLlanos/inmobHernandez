@@ -1,5 +1,115 @@
+<div class="modal-header">
+  <h4 class="modal-title family" id="modal-basic-title">Editar Propietario</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="cerrar()"></button>
+</div>
 
-  <!-- (click)="modal.dismiss('Cross click')" -->
+<div class="modal-body">
+  <div class=" mb-4">
+    <div class="container">
+      <div class="row mt-2">
+        <div *ngIf="msjValidacion == true">
+          <div class="alert alert-danger">{{mensajeAlerta}}</div>
+        </div>
+        <div class="col-6">
+          <label class="form-check-label" for="flexCheckChecked" name="nombre">Nombre</label>
+          <div class="input-group input-group-sm">
+            <input type="text" class="form-control mt-2" name="nombre" (ngModelChange)="campolleno()"
+              [(ngModel)]="model.nombre" />
+          </div>
+        </div>
+        <div class="col-6">
+          <label class="form-check-label" for="flexCheckChecked" name="apellido">Apellido</label>
+          <div class="input-group input-group-sm">
+            <input type="text" class="form-control mt-2" name="nombre" (ngModelChange)="campolleno()"
+              [(ngModel)]="model.apellido" />
+          </div>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-6">
+          <label class="form-check-label" for="flexCheckChecked" name="nombre">DNI</label>
+          <div class="input-group input-group-sm">
+            <input type="number" class="form-control mt-2" name="nombre" (ngModelChange)="campolleno()"
+              [(ngModel)]="model.dni" />
+          </div>
+        </div>
+        <div class="col-6">
+          <label class="form-check-label" for="flexCheckChecked" name="cantidad">Fecha.Nac</label>
+          <div class="input-group input-group-sm">
+            <input id="fecha_nac" class="form-control form-control-sm mt-2" type="date" [(ngModel)]="model.fecha_nac"
+              [(ngModel)]="model.fechaNac_date" />
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-7">
+          <label class="form-check-label" for="flexCheckChecked" name="email">Email</label>
+          <div class="input-group input-group-sm">
+            <input type="text" class="form-control mt-2" aria-describedby="inputGroup-sizing-sm" name="precio"
+              [(ngModel)]="model.email" (ngModelChange)="campolleno()" />
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-outline-danger btn-agregar"
+      (click)="validacion_xDNI(model.dni,model.id_propietario)">Editar</button>
+  </div>
+</div>
+
+<!-- 
+<ng-template #modificar>  
+  <div class="modal-body" >
+    <div class=" mb-4">
+      <div class="container">
+        <div class="row mt-2">
+          <div *ngIf="validacion == true">
+            <div class="alert alert-danger">{{mensaje}}</div>                    
+          </div>          
+          <div class="col-6">
+            <label class="form-check-label" for="flexCheckChecked" name="ciudad">Nombre</label>
+            <div class="input-group input-group-sm">
+              <input type="text" class="form-control mt-2" name="nombre" [(ngModel)]="product.nombre" (ngModelChange)="campolleno()"/>
+            </div>
+          </div>
+          <div class="col-6">
+            <label class="form-check-label" for="flexCheckChecked" name="tipo">Tipo</label>
+            <select class="form-select form-select-sm mt-2" name="tipo" [(ngModel)]="product.id_tipoProducto" (ngModelChange)="campolleno()">
+              <option value={{tipo.id_tipoProducto}} *ngFor="let tipo of tipoProducto"> {{tipo.tipo_producto}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row  mt-4">
+          <div class="col-6">
+            <label class="form-check-label" for="flexCheckChecked" name="precio">Precio</label>
+            <div class="input-group input-group-sm">
+              <input type="number" class="form-control mt-2" aria-describedby="inputGroup-sizing-sm" name="precio"
+                [(ngModel)]="product.precio" (ngModelChange)="campolleno()"/>
+            </div>
+          </div>
+          <div class="col-6">
+            <label class="form-check-label" for="flexCheckChecked" name="cantidad">Cantidad</label>
+            <div class="input-group input-group-sm">
+              <input type="number" class="form-control mt-2" aria-describedby="inputGroup-sizing-sm" name="cantidad"
+                [(ngModel)]="product.cantidad" (ngModelChange)="campolleno()"/>
+            </div>
+          </div>
+        </div>        
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-outline-danger btn-agregar" (click)="updateProducto()">{{btn}}</button>
+    </div>
+  </div>
+</ng-template>
+  
+ (click)="modal.dismiss('Cross click')" 
   <div class="modal-header">
     <h4 class="modal-title family" id="modal-basic-title">Agregar usuario</h4>
     <button type="button" class="btn-close" aria-label="Close"></button>
@@ -33,8 +143,6 @@
             <input type="text" class="form-control mt-4" placeholder="Tipo de Usuario" name="tipo_usuario" />
           </div>
 
-
-
           <div class="col col-sm-9">
             <input type="text" class="form-control mt-4" placeholder="Fecha de Nacimiento" name="fecha_nac" />
           </div>
@@ -45,4 +153,4 @@
   </div>
   <div class="modal-footer">
     <button type="submit" class="btn btn-outline-success">Agregar</button>
-  </div>
+  </div>-->

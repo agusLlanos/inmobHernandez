@@ -1,10 +1,9 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from 'src/app/service/api.service';
 import { inmueble } from 'src/app/models/inmueble';
-import {  ModalEditarComponent } from 'src/app/modal/modal-editar/modal-editar.component';
+import { ModalEditarComponent } from 'src/app/modal/modal-editar/modal-editar.component';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-
-
+import { ModalAvisoComponent } from 'src/app/modal/modal-aviso/modal-aviso.component';
 
 @Component({
   selector: 'app-inmuebles',
@@ -12,26 +11,76 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./inmuebles.component.css']
 })
 export class InmueblesComponent implements OnInit {
-  constructor(private ApiService: ApiService, public modal : NgbModal) { }
-  inmuebles : inmueble[] = [];
+  constructor(private ApiService: ApiService, public modal: NgbModal) { }
+  inmuebles: inmueble[];
+  bandera : boolean = true;
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     this.llenarData()
+    this.bandera = true;
   }
-  llenarData() {
+  llenarData() {    
+    this.inmuebles = [];
+
     this.ApiService.listarInmueble().subscribe(data => {
       data.inmueble.forEach((inmue: any) => {
-        this.inmuebles.push(new inmueble(inmue))        
+        if (inmue.estado == 'alta') {
+          inmue.id_estado = 1
+        } else {
+          inmue.id_estado = 0
+        }
+        this.inmuebles.push(new inmueble(inmue))
       })
-      console.log(this.inmuebles)
+      this.cargarColorEstado()
     })
   }
-  // @ViewChild(ModalEditarComponent) child: ModalEditarComponent;
-  id_seleccionado : number; 
+  estad: string = 'alta';
 
-  openModal(id : number){  
-  const x= this.modal.open(ModalEditarComponent, { size: 'lg' });
-  x.componentInstance.datos ={idSeleccionado: id}
+  cargarColorEstado() {
+    this.inmuebles.forEach((i: inmueble) => {
+      if (i.estado == this.estad.trim()) {
+        i.estado = 'Alta'
+        i.colorEstado = 'text-success'
+      } else {
+        i.estado = 'Baja'
+        i.colorEstado = 'text-danger'
+      }
+    })
+  }
+
+  // @ViewChild(ModalEditarComponent) child: ModalEditarComponent;
+  id_seleccionado: number;
+
+  test: any;
+  i: number;
+
+  openModalAviso(id_inmueble: number, estado: string) {
+    if (estado == 'Alta') {
+      this.test = 'baja'
+    } else {
+      this.test = 'alta'
+    }
+    this.i = id_inmueble
+    console.log(this.i)
+
+    const x = this.modal.open(ModalAvisoComponent, {});
+    x.componentInstance.datos = {
+      idSeleccionado: this.i,
+      estado: this.test,
+      cuerpo: `Esta seguro que desea dar de ${this.test} este Inmueble?`
+    }
+
+    x.closed.subscribe(data => {
+      this.llenarData()
+    })
+  }
+
+  verDetalle(id : number){
+    this.id_seleccionado = id;
+    this.bandera = false;
+  }
+  volver(flag : boolean){
+    this.bandera = flag;
   }
 
 }

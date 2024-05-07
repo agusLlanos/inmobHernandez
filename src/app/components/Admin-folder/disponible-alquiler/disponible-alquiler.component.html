@@ -55,24 +55,16 @@
               <i class="fa-solid fa-square-check" style="color: #2b6227;"></i>
               <span class="text-success"> Disponible</span>
             </div>
-            <div *ngFor="let imagen of array_img">
-              <div *ngIf="inmueble.id_inmueble == imagen.id_inmueble">
-                <img src="assets\imagenes\imagen_inmueble\{{imagen.nombreArchivo}}" width="250" height="150">
-              </div>
-            </div>
-          </div>                   
-        </div>   
+            <img src="assets\imagenes\imagen_inmueble\{{inmueble.imagen.nombreArchivo}}" width="250" height="150">
+          </div>
+        </div>
         <div class="font2" id="contador" style="text-align: right;"> Total disponibles: {{contadorAlquiler}}</div>
-      </div>      
+      </div>
     </div>
   </section>
 </ng-container>
 
 <ng-template #variable>
-  <app-detalle-inmueble
-  (volver)="volver($event)"
-   [id_inmueble]="id_seleccionado"
-   [inmuebles_alquiler]="inmuebles_para_alquiler"
-   [img_inmue]="img_inmue"
-   ></app-detalle-inmueble>   
+  <app-detalle-inmueble (volver)="volver($event)" [id_inmueble]="id_seleccionado"
+    [inmuebles_alquiler]="inmuebles_para_alquiler" [img_inmue]="img_inmue"></app-detalle-inmueble>
 </ng-template>

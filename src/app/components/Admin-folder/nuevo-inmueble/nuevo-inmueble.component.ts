@@ -7,6 +7,9 @@ import { propietario } from 'src/app/models/propietario';
 import { NgbAlertConfig, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from 'src/app/modal/modalExito/modal.component';
 import { imagen_inmueble } from 'src/app/models/imagen_inmueble';
+import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap';
+import { ciudad } from 'src/app/models/ciudad';
+import { tipo_inmueble } from 'src/app/models/tipo_inmueble';
 
 @Component({
   selector: 'app-nuevo-inmueble',
@@ -14,7 +17,8 @@ import { imagen_inmueble } from 'src/app/models/imagen_inmueble';
   styleUrls: ['./nuevo-inmueble.component.css']
 })
 export class NuevoInmuebleComponent {
-  constructor(private ApiInmueble: ApiInmueble, private configAlert: NgbAlertConfig, private modalService: NgbModal, private ApiService: ApiService) { }
+  constructor(private ApiInmueble: ApiInmueble, private configAlert: NgbAlertConfig,
+    private modalService: NgbModal, private ApiService: ApiService, private confi: NgbAccordionConfig) { }
 
   dateToday: string = new Date().toISOString().split('T')[0]
   valorRadio: string;
@@ -24,20 +28,36 @@ export class NuevoInmuebleComponent {
   prueba2: string;
   valorAlert: boolean = true;
   result: any;
-  id_inmueble1 : number
+  id_inmueble1: number;
+  fileLoaded: any[] = [];
+  file: any[] = [];
+  test: any;
+  nombre: string[] = [];
+  nombreImagen: string;
+
+  imagen: imagen_inmueble = new imagen_inmueble({
+    descripcion: '', Archivo: [], id_inmueble: null
+  });
+  imagenes: imagen_inmueble = new imagen_inmueble({
+    descripcion: '', Archivo: [], id_inmueble: null
+  });
+
+  //imagenes: imagen_inmueble[] = [];
 
   ngOnInit(): void {
     this.listarPropietarios();
-    this.listarInmuebles();  
+    this.listarInmuebles();
+    this.listarCiudades();
+    this.listarTipoInmue();
   }
 
   model: inmueble = new inmueble({
-    id_tipoInmueble: null, id_motivo: null, fecha_ingreso: this.dateToday, antiguedad: '',
-    calle: '', numero: null, id_ciudad: null, patio: false, cochera: false, balcon: false, terraza: false, pileta: false,
+    id_tipoInmueble: null, id_motivo: null, fecha_ingreso: this.dateToday, antiguedad: null,
+    calle: null, numero: null, id_ciudad: null, patio: false, cochera: false, balcon: false, terraza: false, pileta: false,
     lavadero: false, living: false, ascensor: false, aire_acond: false, comedor: false, cocina: false, amoblado: false,
-    cloaca: false, cant_banios: null, cant_habit: null, observaciones: '', nombre: null, apellido: null, dni: null,
+    cloaca: false, cant_banios: 0, cant_habit: 0, observaciones: '', nombre: null, apellido: null, dni: null,
     telefono: null, fecha_nac: null, email: null, agua: false, calefaccion: false, gas: false, estado: 'alta', luz: false,
-    id_propietario: null, costo_inicial: null, id_moneda : null
+    id_propietario: null, costo_inicial: null, id_moneda: null
   })
 
   @ViewChild(ModalComponent) child: ModalComponent;
@@ -45,38 +65,87 @@ export class NuevoInmuebleComponent {
   variable: any;
   ult_id_inmue: any;
 
-  prueba(value:any){
-console.log(value)
+  prueba(value: any) {
+    console.log(value)
   }
 
-  onSubmit() {
-
+  cargarNuevoInmueble() {
     if (this.valorRadioButton == 'nuevo') {
       this.result = this.propietarios.filter((prop) => prop.dni == this.model.dni);
       if (this.result.length >= 1) {
         this.valorAlert = false;
       } else {
         this.registrarInmueble();
-
       }
-    } else {     
-
+    } else {
       this.registrarInmueble();
     }
-
-
   };
 
-  registrarInmueble(){
+  registrarInmueble() {
+    console.log(this.model)
     this.ApiInmueble.createNewInmueble(this.model).subscribe((Response: any) => {
       console.log(Response)
-      this.guardarImagen(Response.id_inmueble)
+      this.guardarImagenPerfil(Response.id_inmueble)
     }
     );
-    this.valorAlert = true;
-    this.child.showModal()
   }
 
+  guardarImagenPerfil(id: number) {
+    this.imagen.id_inmueble = id;
+    this.imagen.imagenPerfil = true;
+
+    if (this.file.length >= 0) {
+      for (const vari in this.file) {
+        if (typeof this.file[vari] == 'object') {
+          this.imagen.Archivo.push(this.file[vari]);
+          console.log(this.imagen)
+        } else {
+          console.log('error')
+        }
+      }
+      this.ApiInmueble.cargarImagen(this.imagen).subscribe((Response: any) => {
+        console.log(Response)
+        this.guardarImagenes(id)
+      });
+
+    } else {
+      this.guardarImagenes(id)
+    }
+  }
+
+  guardarImagenes(id: number) {
+    this.imagenes.id_inmueble = id;
+    this.imagenes.imagenPerfil = false;
+
+    if (this.fileLoaded.length >= 0) {
+      for (const vari in this.fileLoaded) {
+        if (typeof this.fileLoaded[vari] == 'object') {
+          this.imagenes.Archivo.push(this.fileLoaded[vari]);
+          console.log(this.imagenes)
+        }
+      }
+      this.ApiInmueble.cargarImagen(this.imagenes).subscribe((Response: imagen_inmueble) => console.log(Response));
+    }
+  }
+
+  bandera: number = 0;
+
+  loadFileImage(event: any, bandera: number) {
+
+    if (bandera == 1) {
+      if (event.target.files && event.target.files.length > 0) {
+        this.file = event.target.files
+
+        console.log(this.file)
+      }
+    } else {
+      if (event.target.files && event.target.files.length > 0) {
+        this.fileLoaded = event.target.files
+        console.log(this.fileLoaded)
+      }
+    }
+  }
   onChange(variable: string) {
     this.valorRadioButton = variable
 
@@ -90,7 +159,7 @@ console.log(value)
       data.propietario.forEach((prop: any) => {
         this.propietarios.push(new propietario(prop))
       })
-      console.log(this.propietarios)
+      //console.log(this.propietarios)
     })
   }
 
@@ -99,44 +168,31 @@ console.log(value)
       data.inmueble.forEach((inmue: any) => {
         this.inmuebles.push(new inmueble(inmue))
       })
-      console.log(this.inmuebles)
+      //console.log(this.inmuebles)
     })
-  } 
+  }
+  ciudades: ciudad[] = [];
 
-  test: any;
-  nombre: string[] = [];
-  nombreImagen: string;
-
-  imagen: imagen_inmueble = new imagen_inmueble({
-    descripcion: null, Archivo: [], id_inmueble: null
-  })
-
-  imagenes: imagen_inmueble[] = [];
-
-  guardarImagen(id: number) {
-
-    this.imagen.id_inmueble = id;
-
-    for (const vari in this.fileLoaded) {
-      if (typeof this.fileLoaded[vari] == 'object') {
-        this.imagen.Archivo.push(this.fileLoaded[vari]);
-      }
-    }
-
-    this.ApiInmueble.cargarImagen(this.imagen).subscribe((Response: imagen_inmueble) => console.log(Response));
-
+  listarCiudades() {
+    this.ApiInmueble.listarCiudad().subscribe(data => {
+      data.ciudad.forEach((c: ciudad) => {
+        this.ciudades.push(new ciudad(c))
+      })
+      //console.log(this.ciudades)
+    })
   }
 
-  fileLoaded: any[] = [];
+  tipo_inm : tipo_inmueble[] = [];
 
-  loadFileImage(event: any) {
-    const reader = new FileReader();
-    if (event.target.files && event.target.files.length > 0) {
-      this.fileLoaded = event.target.files
-      console.log(this.fileLoaded)
-    }
-
+  listarTipoInmue(){
+    this.ApiInmueble.listar_tipoInmueble().subscribe(data=>{
+      data.tipo.forEach((t: tipo_inmueble)=>{
+        this.tipo_inm.push(new tipo_inmueble(t))
+      })
+      //console.log(this.tipo_inm)
+    })
   }
+
 }
 
 

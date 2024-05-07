@@ -1,0 +1,86 @@
+<h3 class="font-">
+  Carga de nuevo Propietario
+</h3>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item">Propietarios</li>
+    <li class="breadcrumb-item active" aria-current="page">Cargar nuevo</li>
+  </ol>
+</nav>
+
+<section>
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-tittle font- mb-4">
+            Datos nuevo Propietario
+          </h5>
+          <div>
+            <div class="row"> 
+              <div *ngIf="msjValidacion == true">
+                <ngb-alert type="{{type}}" [dismissible]="false">{{mensajeAlerta}}</ngb-alert> 
+              </div>                  
+              <div class="col-sm-5 ">
+                <label class="form-check-label" for="flexCheckChecked">
+                  Nombre
+                </label>
+                <input type="text" class="form-control form-control-sm mt-2 mb-3 " id="nombre"
+                  name="nombre" [(ngModel)]="model.nombre">
+              </div>
+              <div class="col-sm-5 mx-4">
+                <label class="form-check-label" for="flexCheckChecked">
+                  Apellido
+                </label>
+                <input type="text" class="form-control form-control-sm mt-2 mb-3 " id="apellido"
+                  name="apellido" [(ngModel)]="model.apellido">
+              </div>
+            </div>
+
+            <div class="row">    
+              <div class="col-sm-5">
+                <label class="form-check-label" for="flexCheckChecked">
+                  DNI
+                </label>
+                <input type="text" class="form-control form-control-sm mt-2 mb-3" id="dni"
+                  name="dni" [(ngModel)]="model.dni">
+              </div>
+              <div class="col-sm-5 mx-4">
+                <label class="form-check-label" for="flexCheckChecked">
+                  Fecha de nacimiento
+                </label>
+                <input  id="startDate" class="form-control form-control-sm mt-2 mb-3"
+                  type="date" [(ngModel)]="model.fecha_nac"/>
+                <span id="startDateSelected"></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="form-check-label" for="flexCheckChecked">
+                  Telefono
+                </label>
+                <input type="text" class="form-control form-control-sm mt-2 mb-3" id="telefono"
+                  name="telefono" [(ngModel)]="model.telefono">
+              </div>
+              <div class="col-sm-6 mx-4">
+                <label class="form-check-label" for="flexCheckChecked">
+                  Email
+                </label>
+                <input type="text" class="form-control form-control-sm mt-2 mb-3" id="email"
+                  name="email" [(ngModel)]="model.email">
+              </div>
+            </div>
+                    
+            <div class="row">
+              <div class="col-sm-12 pt-3">
+                <button type="submit" class="btn btn-success" (click)="verificarCampos()">Guardar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

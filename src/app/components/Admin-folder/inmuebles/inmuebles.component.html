@@ -1,145 +1,110 @@
-<h3 class="font-">
-  Listado inmuebles
-</h3>
-
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Home</a></li>
-    <li class="breadcrumb-item">Inmuebles</li>
-    <li class="breadcrumb-item active" aria-current="page">Listado Inmuebles</li>
-  </ol>
-</nav>
-
-<div class="container mt-4" id="container-table">
-  <table class="table table-hover ">
-    <thead class="table-success">
-      <tr>
-        <th class="" scope="col">ID</th>
-        <th scope="col">Propietario</th>
-        <th scope="col">Tipo</th>
-        <th scope="col">Fecha ingreso</th>
-        <th scope="col">Motivo </th>
-        <th scope="col">Dirección</th>
-        <th scope="col">Localidad</th>
-        <th scope="col">Antiguedad</th>
-        <th scope="col">Estado</th>
-        <th scope="col" id="table-option">#</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let inmueble of inmuebles" class="table-light">
-        <td><b>{{inmueble.id_inmueble}}</b></td>
-        <td><b>{{inmueble.propietario}}</b></td>
-        <td><b>{{inmueble.tipo_inmueble}}</b></td>
-        <td><b>{{inmueble.fechaIngreso_muestra}}</b></td>
-        <td><b>{{inmueble.motivo}}</b></td>
-        <td><b>{{inmueble.direccion}}</b></td>
-        <td><b>{{inmueble.ciudad}}</b></td>
-        <td><b>{{inmueble.antiguedad}}</b></td>
-        <td><b>{{inmueble.estado}}</b></td>
-        <td><i class="fa-solid fa-pen-to-square fa-xl mx-3" style="cursor: pointer"
-            (click)=" openModal(inmueble.id_inmueble)"></i>
-          <i class="fa-solid fa-trash-can fa-xl" style="color: #9b2222; cursor: pointer"></i>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<!-- <app-modal-editar #modaleditar></app-modal-editar> -->
-<!-- (clic) = prueba(inmueble.id_inmueble)" 
-  openLg(contenido, inmueble.id_inmueble)
-  
-
-<ng-template #contenido let-modal>
-  <div class="modal-header">
-    <h2 class="modal-title family" id="modal-basic-title">Modificar usuario n° {{id_seleccionado}}</h2>
-    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-  </div>
-  <div class="modal-body">
-    <form id="formUsuarioModal">
-      <div class="input-group mb-4">
-        <div class="row">
-
-          <div class="col col-sm-9">
-            <input type="text" class="form-control mt-4" placeholder="Nombre" name="nombre"
-              [ngModel]="id_seleccionado" />
-          </div>
-
-          <div class="col col-sm-9">
-            <input type="text" class="form-control mt-4" placeholder="Apellido" name="apellido" />
-          </div>
-
-          <div class="col col-sm-9">
-            <input type="text" class="form-control mt-4" placeholder="DNI" name="dni" />
-          </div>
-
-          <div class="col col-sm-9">
-            <input type="text" class="form-control mt-4" placeholder="Telefono" name="telefono" />
-          </div>
-
-          <div class="col col-sm-9">
-            <input type="text" class="form-control mt-4" placeholder="Email" name="email" />
-          </div>
-
-          <div class="col col-sm-9 ">
-            <input type="text" class="form-control mt-4" placeholder="Tipo de Usuario" name="tipo_usuario" />
-          </div>
-
-          <div class="col col-sm-9">
-            <input type="text" class="form-control mt-4" placeholder="Fecha de Nacimiento" name="fecha_nac" />
-          </div>
-
+<ng-container *ngIf="bandera; else variable">
+  <div class="pagetitle">
+    <h3 class="font- prueba2">Inmuebles disponibles</h3>
+    <nav>
+      <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="">Home</a></li>
+        <li class="breadcrumb-item active">Inmuebles</li>
+        <li class="breadcrumb-item active">Listado Inmuebles</li>
+      </ul>
+    </nav>
+  </div><!-- End Page Title -->
+  <section class="section dashboard">
+    <div class="container" id="row1">
+      <div class="row">
+        <!--
+      <div class="col-4">
+        <div class="input-group rounded mt-4 mb-4">
+          <input type="search" class="form-control rounded" placeholder="Buscar por producto..." aria-label="Search"
+            aria-describedby="search-addon"  />
+          <button type="button" class="btn btn-primary">
+            <i class="fas fa-search"></i>
+          </button>
         </div>
       </div>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button type="submit" class="btn btn-outline-success">Agregar</button>
-  </div>
-</ng-template>
-
-
-<!-- 
-<div class="container mt-4" id="container-table">
-    <div class="row">
-        <div class="col">                     
-            <div class="table-responsive">
-                <table class="table table-hover table-bordered " id="tablaUsuarios">
-                    <thead>
-                        <tr id="fila-usuario">
-                            <th scope="col">ID</th>
-                            <th scope="col">Propietario</th>
-                            <th scope="col">Fecha ingreso</th>
-                            <th scope="col">Tipo</th>
-                            <th scope="col">Motivo </th>
-                            <th scope="col">Dirección</th>
-                            <th scope="col">Localidad</th>                            
-                            <th scope="col">Antiguedad</th>
-                            <th scope="col">Estado</th>                                                        
-                            <th scope="col" id="table-option">#</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr *ngFor="let inmueble of inmuebles">
-                            <td>{{inmueble.id_inmueble}}</td>
-                            <td>{{inmueble.propietario}}</td>
-                            <td>{{inmueble.fechaIngreso_muestra}}</td>
-                            <td>{{inmueble.tipo_inmueble}}</td>
-                            <td>{{inmueble.motivo}}</td>
-                            <td>{{inmueble.direccion}}</td>
-                            <td>{{inmueble.ciudad}}</td>                            
-                            <td>{{inmueble.antiguedad}}</td>
-                            <td>{{inmueble.estado}}</td>
-                            <td class=""><i class="fa-solid fa-pen-to-square fa-xl mx-3" style="cursor: pointer"
-                                    ></i>
-                                <i class="fa-solid fa-trash-can fa-xl" style="color: #9b2222; cursor: pointer"
-                                    ></i>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+      -->
+        <div class="col-4 mt-4 mb-4 d-flex  justify-content-center">
+          <i class="bi bi-tags"></i>
+          <label class="form-check-label mx-3" for="flexCheckChecked" name="categoria"> Tipo Inmueble</label>
+          <select class="form-select-sm" name="tipo" style="height: 28px;">
+            <option value="0">Todos los inmuebles</option>
+            <option value="0">Casa</option>
+            <option value="0">Departamento</option>
+            <option value="0">Lote</option>
+            <option value="0">Galpon</option>
+            <option value="0">Local</option>
+            <option value="0">Campo</option>
+          </select>
         </div>
+        <div class="col-4 mt-4 mb-4 d-flex  justify-content-center">
+          <i class="bi bi-tags"></i>
+          <label class="form-check-label px-3" for="flexCheckChecked" name="categoria"> Estado</label>
+          <select class="form-select-sm" name="tipo" style="width: 170px; height: 28px;">
+            <option value="">Todo</option>
+            <option value="1">Alta</option>
+            <option value="0">Baja</option>
+          </select>
+        </div>
+
+        <div class="col-4 d-flex justify-content-end mt-4 mb-4">
+          <button class="btn btn-danger" id="btnAgregar" type="button" name="agregar" name="botonAgregar">
+            <a [routerLink]="'/Admin/NuevoInmueble'"> <i class="fa-solid fa-plus" style="color: #ffffff;"></i> Inmueble
+            </a>
+
+          </button>
+        </div>
+      </div>
     </div>
-</div> -->
+    <div class="row mt-4">
+      <div class="col-12">
+        <div class="row">
+          <div class="container">
+            <table class="table custom-table">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">ID</th>
+                  <th scope="col">Tipo</th>
+                  <th scope="col">Motivo</th>
+                  <th scope="col">Propietario</th>
+                  <th scope="col">Direccion</th>
+                  <th scope="col">Localidad</th>
+                  <th scope="col">Fecha ingreso</th>
+                  <th scope="col">Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let inm of inmuebles">
+                  <td><i class="fa-solid fa-eye" style="color: #0a4d27;" title="Ver detalle" (click)="verDetalle(inm.id_inmueble)"></i></td>
+                  <td>{{inm.id_inmueble}}</td>
+                  <td>{{inm.tipo_inmueble}}</td>
+                  <td>{{inm.motivo}}</td>
+                  <td>{{inm.propietario}}</td>
+                  <td>{{inm.direccion}}</td>
+                  <td>{{inm.ciudad}}</td>
+                  <td>{{inm.fechaIngreso_muestra}}</td>
+                  <td [class]="inm.colorEstado">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
+                        [checked]="inm.id_estado" (change)="openModalAviso(inm.id_inmueble, inm.estado)">
+                      <label class="form-check-label" for="flexSwitchCheckChecked">{{inm.estado}}</label>
+                    </div>
+                  </td>
+                  <!--  <td>                   
+                  <i class="fa-solid fa-pen-to-square fa-lg" style="color: #d72f23;"
+                   title="Editar"></i>
+                  <i class="fa-solid fa-trash fa-lg px-2" style="color: #363b44;"
+                    title="Eliminar"></i>
+                </td> -->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</ng-container>
+<ng-template #variable>
+  <app-detalle-inmueble (volver)="volver($event)" [id_inmueble]="id_seleccionado"></app-detalle-inmueble>
+</ng-template>

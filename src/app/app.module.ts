@@ -14,6 +14,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { LoginComponent } from './components/Admin-folder/login/login.component';
 import { ComercialComponent } from './components/Comercial-folder/comercial/comercial.component';
 import { RouterModule } from '@angular/router';
@@ -25,6 +26,10 @@ import { DisponibleAlquilerComponent } from './components/Admin-folder/disponibl
 import { DisponibleVentaComponent } from './components/Admin-folder/disponible-venta/disponible-venta.component';
 import { DetalleInmuebleComponent } from './components/Admin-folder/detalle-inmueble/detalle-inmueble.component';
 import { ModalEditarComponent } from './modal/modal-editar/modal-editar.component';
+import { ModalAvisoComponent } from './modal/modal-aviso/modal-aviso.component';
+import { ModalYaConfirmadoComponent } from './modal/modal-ya-confirmado/modal-ya-confirmado.component';
+import { ListadoPropComponent } from './components/Admin-folder/PROPIETARIOS/listado-prop/listado-prop.component';
+import { NuevoPropietarioComponent } from './components/Admin-folder/PROPIETARIOS/nuevo-propietario/nuevo-propietario.component';
 
 
 @NgModule({
@@ -46,6 +51,10 @@ import { ModalEditarComponent } from './modal/modal-editar/modal-editar.componen
      DisponibleVentaComponent,
      DetalleInmuebleComponent,
      ModalEditarComponent,
+     ModalAvisoComponent,
+     ModalYaConfirmadoComponent,
+     ListadoPropComponent,
+     NuevoPropietarioComponent,
   ],
   imports: [
     BrowserModule,

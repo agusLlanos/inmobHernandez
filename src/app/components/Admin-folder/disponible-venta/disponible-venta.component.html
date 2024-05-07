@@ -1,3 +1,4 @@
+<ng-container *ngIf="bandera; else variable">
 <h3 class="font-">
     Inmuebles disponibles para Venta
   </h3>
@@ -46,7 +47,7 @@
               <br>
               <span>Código: {{inmueble.id_inmueble}}</span>
               <br>
-              <button type="button" class="btn btn-primary" id="Ver-detalles">Ver detalles</button>
+              <button type="button" class="btn btn-primary" id="Ver-detalles" (click)="verDetalle(inmueble.id_inmueble)">Ver detalles</button>
             </div>
           </div>
           <div class="col-6 border-bottom border-3">
@@ -54,10 +55,17 @@
               <i class="fa-solid fa-square-check" style="color: #2b6227;"></i>
               <span class="text-success">     Disponible</span>            
             </div>                    
-            <img src="..\assets\imagenes\imagen_inmueble\IMG_0834.JPG"  width="250" height="150">
+            <img src="assets\imagenes\imagen_inmueble\{{inmueble.nombreArchivo}}"  width="250" height="150">
           </div>
         </div>  
         <div class="font2" id="contador">Total disponibles: {{contadorVentas}}</div>  
       </div>
     </div>
   </section>
+</ng-container>
+
+<ng-template #variable>
+  <app-detalle-inmueble (volver)="volver($event)" [id_inmueble]="id_seleccionado"
+  ></app-detalle-inmueble>
+</ng-template>
+<!-- [inmuebles_alquiler]="inmuebles_para_Ventas" [img_inmue]="img_inmue" -->
