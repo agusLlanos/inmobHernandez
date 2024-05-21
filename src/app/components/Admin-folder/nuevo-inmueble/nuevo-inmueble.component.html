@@ -14,7 +14,7 @@
   <b>El dni ingresado ya se encuentra registrado</b>
 </ngb-alert>
 
-<section>
+<section>  
   <div class="row">
     <div class="col-sm-6">
       <div class="card">
@@ -263,7 +263,7 @@
             </div>
             <div class="row">
               <div class="col-sm-12 pt-3">
-                <button type="submit" class="btn btn-success" (click)="cargarNuevoInmueble()">Guardar</button>
+                <button type="submit" class="btn btn-success" (click)="limpiarCampos()">Guardar</button>
               </div>
             </div>
           </div>
@@ -371,6 +371,7 @@
             <h5 class="card-tittle font2- pb-3">
               Cargar imagenes
             </h5>
+            <div class="mb-3">
             <ngb-accordion [destroyOnHide]="false">
               <ngb-panel title="Imagen de perfil">
                 <ng-template ngbPanelContent>
@@ -378,7 +379,7 @@
                   (change)="loadFileImage($event, bandera = 1)">
                 </ng-template>
               </ngb-panel>
-            </ngb-accordion>  
+            </ngb-accordion>  </div>
 
             <ngb-accordion [destroyOnHide]="false">
               <ngb-panel title="Imagenes del inmueble">

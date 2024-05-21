@@ -18,6 +18,7 @@ import { DisponibleVentaComponent } from './components/Admin-folder/disponible-v
 import { DetalleInmuebleComponent } from './components/Admin-folder/detalle-inmueble/detalle-inmueble.component';
 import { ListadoPropComponent } from './components/Admin-folder/PROPIETARIOS/listado-prop/listado-prop.component';
 import { NuevoPropietarioComponent } from './components/Admin-folder/PROPIETARIOS/nuevo-propietario/nuevo-propietario.component';
+import { CargaImagenesComponent } from './components/Admin-folder/carga-imagenes/carga-imagenes.component';
 
 
 const routes: Routes = [
@@ -38,12 +39,13 @@ const routes: Routes = [
     path: 'Admin', component: AdminComponent,
     children: [     
       { path: 'Usuarios', component: Usuarios2Component },
-      { path: 'Inmuebles', component: InmueblesComponent },
+      { path: 'Inmuebles', component: InmueblesComponent },      
       {path : 'NuevoInmueble', component : NuevoInmuebleComponent},
       {path: 'Disponible-alquiler', component : DisponibleAlquilerComponent},
       {path: 'Disponible-venta', component : DisponibleVentaComponent},
       {path: 'Listado-Propietarios', component : ListadoPropComponent},
-      {path: 'NuevoPropietario', component : NuevoPropietarioComponent}
+      {path: 'NuevoPropietario', component : NuevoPropietarioComponent},
+      {path: 'CargaImagenes', component : CargaImagenesComponent}
     ]
   },
   { path: '', pathMatch: 'full', redirectTo: 'Comercial/Inicio' },

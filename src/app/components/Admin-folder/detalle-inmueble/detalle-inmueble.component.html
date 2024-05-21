@@ -33,20 +33,33 @@
       <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
         <div class="row">
           <div class="col-sm-12">
-            <div class="form-check form-switch  gap-2 d-md-flex justify-content-md-end font-"
+            <!-- <div class="form-check form-switch  gap-2 d-md-flex justify-content-md-end font-"
               style="display: inline-flex;">
               <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
               <label class="form-check-label" for="flexSwitchCheckChecked">Alta</label>
-            </div>
+            </div> -->
+            <ng-container *ngIf="habilitar == false; else habilita">
+            </ng-container>
+            <ng-template #habilita>
+              <div class="alert alert-primary d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+                  <use xlink:href="#info-fill" />
+                </svg>
+                <div>
+                  El inmueble se encuentra dado de baja
+                </div>
+              </div>
+            </ng-template>
             <div class="card">
               <div class="card-body">
                 <label for="exampleFormControlInput1"
-                  class="form-label font- border-bottom border-3 border-success pb-2 mt-4" style="display: block;">Detalle
+                  class="form-label font- border-bottom border-3 border-success pb-2 mt-4"
+                  style="display: block;">Detalle
                   inmueble: Código
                   {{id_inmueble}}
                   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button class="btn btn-success" type="button" name="modificar" name="botonEditar"
-                      (click)="modificar()" *ngIf="nombreBoton =='Editar'; else guardar">
+                      (click)="modificar()" *ngIf="nombreBoton =='Editar'; else guardar" [disabled]="habilitar">
                       <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i>
                       {{nombreBoton}}</button>
 
@@ -69,7 +82,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">                    
+                  <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
                     <div class="row">
                       <div class="col-sm-4 mt-5">
                         <label name="tipo" class="form-check-label" for="flexCheckChecked">Tipo</label>
@@ -372,13 +385,13 @@
                     name="Propietario">Propietario</label>
                   <div class="col-sm-5">
                     <select class="form-select form-select-sm mt-2" name="prop" [disabled]="editable"
-                    [(ngModel)]="inmueb.id_propietario">
-                    <option name="prop" *ngFor="let p of propietarios" value={{p.id_propietario}} selected>
-                      {{p.apeNom}}</option>
-                  </select>
-                  </div>            
+                      [(ngModel)]="inmueb.id_propietario">
+                      <option name="prop" *ngFor="let p of propietarios" value={{p.id_propietario}} selected>
+                        {{p.apeNom}}</option>
+                    </select>
+                  </div>
 
-                </div>               
+                </div>
 
                 <div class="row g-3 mt-5">
                   <div class="col-sm-10 mt-3">
@@ -399,24 +412,36 @@
         <div class="container-lg">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
             <div *ngFor="let imagen of img_inmuee">
-              <div class="col pt-3">
+              <div class="col pt-3">               
                 <img src="assets\imagenes\imagen_inmueble\{{imagen.nombreArchivo}}" width="300" height="250"
-                  id="img-inmueble" (click)="openXl(content, imagen.nombreArchivo)">
-
+                  id="img-inmueble" (click)="openXl(content, imagen.posicion)">
                 <ng-template #content let-modal>
                   <div class="modal-header">
                     <button type="button" class="btn-close" aria-label="Close"
                       (click)="modal.dismiss('Cross click')"></button>
                   </div>
                   <div class="modal-body">
-                    <ngb-carousel>
-                      <ng-template ngbSlide>
-                        <div class="picsum-img-wrapper d-flex justify-content-md-center">
-                          <img src="assets\imagenes\imagen_inmueble\{{nombre_img}}" width="1000" height="550"
-                            id="img-inmueble">
-                        </div>
-                      </ng-template>
-                    </ngb-carousel>
+                    <div class="picsum-img-wrapper d-flex justify-content-md-center">
+                      <img src="assets\imagenes\imagen_inmueble\{{img_inmuee[posic].nombreArchivo}}" width="1000"
+                        height="550" id="img-inmueble">
+                    </div>                  
+                  </div>
+                  <div class="modal-footer">
+                     <div class="container">
+                      <div class="row">
+                        <div class="col-6"><i class="fa-solid fa-chevron-left fa-lg d-flex justify-content-start" (click)="cambiarImagen(operador = 'restar');"></i></div>
+                      <div class="col-6 d-flex justify-content-end"><i class="fa-solid fa-chevron-right fa-lg" (click)="cambiarImagen(operador = 'sumar');"></i></div>
+                      </div>
+                      
+                      
+                 <!--     <div class="col-6">
+                        
+                      </div>
+                      <div class="col-6">
+                        
+                      </div>-->
+                    </div> 
+
                   </div>
                 </ng-template>
               </div>

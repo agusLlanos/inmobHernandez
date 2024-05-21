@@ -14,7 +14,7 @@ export class ModalAvisoComponent implements OnInit {
     private modal: NgbModal) { }
 
   ngOnInit(): void {
-    this.cargarDato();    
+    this.cargarDato();
   }
 
   @Input() public datos: any;
@@ -34,31 +34,32 @@ export class ModalAvisoComponent implements OnInit {
     this.cuerpo = this.datos.cuerpo
     this.titulo = this.datos.titulo
     this.model.id_inmueble = this.datos.idSeleccionado
-    this.model.estado = this.datos.estado     
+    this.model.estado = this.datos.estado
 
-  } 
+  }
 
-  model: inmueble = new inmueble({ id_inmueble: '', estado: '' });  
-color : string;
+  model: inmueble = new inmueble({ id_inmueble: '', estado: '' });
+  color: string;
 
-  changeEstadoInmue() {  
-if(this.model.estado == 'baja'){
-this.color = 'rojo'
-}else{
-  this.color = 'verde'
-}
+  changeEstadoInmue() {
+    if (this.model.estado == 'baja') {
+      this.color = 'rojo'
+    } else {
+      this.color = 'verde'
+    }
 
+    this.apiInmue.updateEstadoInmue(this.model).subscribe((Response: any) => {
+      console.log(Response)
+      if (Response.success == true) {
+        this.ngbModalRef.close();
+        const x = this.modal.open(ModalYaConfirmadoComponent, {});
+        x.componentInstance.datos = {
+          titulo: 'Exito!!', cuerpo: `El inmueble se ha dado de ${this.model.estado} de manera correcta`
+          , color: this.color
+        }
+      }
+    })
 
-      this.apiInmue.updateEstadoInmue(this.model).subscribe((Response : any) => {
-        console.log(Response)
-         if (Response.success == true) {
-          this.ngbModalRef.close();
-          const x = this.modal.open(ModalYaConfirmadoComponent, {});
-          x.componentInstance.datos = { titulo: 'Exito!!', cuerpo: `El inmueble se ha dado de ${this.model.estado} de manera correcta`
-          , color : this.color }
-        } 
-      })
-  
   }
 
 }

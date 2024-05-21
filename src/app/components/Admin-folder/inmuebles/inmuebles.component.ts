@@ -14,6 +14,7 @@ export class InmueblesComponent implements OnInit {
   constructor(private ApiService: ApiService, public modal: NgbModal) { }
   inmuebles: inmueble[];
   bandera : boolean = true;
+  estado_inm : any = '';
 
   ngOnInit(): void {
     this.llenarData()
@@ -35,15 +36,17 @@ export class InmueblesComponent implements OnInit {
     })
   }
   estad: string = 'alta';
+  letra : string;
 
   cargarColorEstado() {
     this.inmuebles.forEach((i: inmueble) => {
       if (i.estado == this.estad.trim()) {
-        i.estado = 'Alta'
+        i.estado = 'ALTA'
         i.colorEstado = 'text-success'
       } else {
-        i.estado = 'Baja'
-        i.colorEstado = 'text-danger'
+        i.estado = 'BAJA'
+        i.colorEstado = 'text-danger'        
+        i.colorLetra =  'text-danger'        
       }
     })
   }
@@ -55,7 +58,7 @@ export class InmueblesComponent implements OnInit {
   i: number;
 
   openModalAviso(id_inmueble: number, estado: string) {
-    if (estado == 'Alta') {
+    if (estado == 'ALTA') {
       this.test = 'baja'
     } else {
       this.test = 'alta'
@@ -75,9 +78,10 @@ export class InmueblesComponent implements OnInit {
     })
   }
 
-  verDetalle(id : number){
+  verDetalle(id : number, estado : any){
     this.id_seleccionado = id;
     this.bandera = false;
+    this.estado_inm = estado;
   }
   volver(flag : boolean){
     this.bandera = flag;

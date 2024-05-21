@@ -5,6 +5,7 @@ export class imagen_inmueble{
     ruta : string
     nombreArchivo : any
     imagenPerfil : boolean
+    posicion : number;
 
     constructor(imag : any){
         this.id_inmueble = imag.id_inmueble || null
@@ -13,6 +14,7 @@ export class imagen_inmueble{
         this.ruta = imag.ruta || null
         this.nombreArchivo = this.convertirNombreArchivo(imag.ruta) || null
         this.imagenPerfil = imag.imagenPerfil || null
+        this.posicion = imag.posicion || null
     }       
      variable : any = null;
      

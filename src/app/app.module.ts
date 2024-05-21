@@ -30,6 +30,7 @@ import { ModalAvisoComponent } from './modal/modal-aviso/modal-aviso.component';
 import { ModalYaConfirmadoComponent } from './modal/modal-ya-confirmado/modal-ya-confirmado.component';
 import { ListadoPropComponent } from './components/Admin-folder/PROPIETARIOS/listado-prop/listado-prop.component';
 import { NuevoPropietarioComponent } from './components/Admin-folder/PROPIETARIOS/nuevo-propietario/nuevo-propietario.component';
+import { CargaImagenesComponent } from './components/Admin-folder/carga-imagenes/carga-imagenes.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { NuevoPropietarioComponent } from './components/Admin-folder/PROPIETARIO
      ModalYaConfirmadoComponent,
      ListadoPropComponent,
      NuevoPropietarioComponent,
+     CargaImagenesComponent,
   ],
   imports: [
     BrowserModule,

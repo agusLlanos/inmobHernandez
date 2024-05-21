@@ -1,0 +1,58 @@
+<h3 class="font-">
+  Carga de imagenes a inmueble
+</h3>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item">Imagenes</li>
+    <li class="breadcrumb-item active" aria-current="page">Cargar de imagenes</li>
+  </ol>
+</nav>
+
+<section>
+  <div class="row">
+    <div class="col-sm-7">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-tittle font- mb-5">
+            Carga de imagenes
+          </h5>
+          <div class="row mb-4">
+            <div class=" col-12 col-sm-5 col-md-3 col-xxl-3 d-flex justify-content-end">
+              <label for="id" class="form-label">ID inmueble</label>
+            </div>
+            <div class="col-sm-6 col-md-4 col-xxl-4">
+              <input type="number" class="form-control form-control-sm mb-2 " id="id" name="id" [(ngModel)]="id_inmueble">
+            </div>
+          </div>
+          <div class="mb-4">
+            <ngb-accordion [destroyOnHide]="false">
+              <ngb-panel title="Imagen de perfil">
+                <ng-template ngbPanelContent>
+                  <input class="form-control form-control-sm" id="formFileSm" type="file"
+                    (change)="loadFileImage($event, bandera = 1)">
+                </ng-template>
+              </ngb-panel>
+            </ngb-accordion>
+          </div>
+          <ngb-accordion [destroyOnHide]="false">
+            <ngb-panel title="Imagenes del inmueble">
+              <ng-template ngbPanelContent>
+                <input class="form-control form-control-sm" id="formFileSm" type="file" multiple
+                  (change)="loadFileImage($event, bandera = 0)">
+              </ng-template>
+            </ngb-panel>
+          </ngb-accordion>
+
+          <div class="row mt-4">
+            <div class="col-sm-12 pt-3 d-flex justify-content-end">
+              <button type="submit" class="btn btn-success" (click)="modificarImagenPerfil(id_inmueble)">Guardar</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

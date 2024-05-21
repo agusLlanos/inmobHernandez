@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { ApiInmueble } from 'src/app/service/api.inmueble';
 import { ApiService } from 'src/app/service/api.service';
 import { inmueble } from 'src/app/models/inmueble';
@@ -10,6 +10,7 @@ import { imagen_inmueble } from 'src/app/models/imagen_inmueble';
 import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ciudad } from 'src/app/models/ciudad';
 import { tipo_inmueble } from 'src/app/models/tipo_inmueble';
+import { ModalYaConfirmadoComponent } from 'src/app/modal/modal-ya-confirmado/modal-ya-confirmado.component';
 
 @Component({
   selector: 'app-nuevo-inmueble',
@@ -18,7 +19,8 @@ import { tipo_inmueble } from 'src/app/models/tipo_inmueble';
 })
 export class NuevoInmuebleComponent {
   constructor(private ApiInmueble: ApiInmueble, private configAlert: NgbAlertConfig,
-    private modalService: NgbModal, private ApiService: ApiService, private confi: NgbAccordionConfig) { }
+    private modalService: NgbModal, private ApiService: ApiService, private confi: NgbAccordionConfig,
+    private modal: NgbModal) { }
 
   dateToday: string = new Date().toISOString().split('T')[0]
   valorRadio: string;
@@ -85,10 +87,11 @@ export class NuevoInmuebleComponent {
   registrarInmueble() {
     console.log(this.model)
     this.ApiInmueble.createNewInmueble(this.model).subscribe((Response: any) => {
-      console.log(Response)
-      this.guardarImagenPerfil(Response.id_inmueble)
-    }
-    );
+      console.log(Response.success)
+      if (Response.success) {
+        this.guardarImagenPerfil(Response.id_inmueble)
+      }
+    });
   }
 
   guardarImagenPerfil(id: number) {
@@ -105,8 +108,10 @@ export class NuevoInmuebleComponent {
         }
       }
       this.ApiInmueble.cargarImagen(this.imagen).subscribe((Response: any) => {
-        console.log(Response)
-        this.guardarImagenes(id)
+        console.log(Response.success)
+        if (Response.success) {
+          this.guardarImagenes(id)
+        }
       });
 
     } else {
@@ -125,8 +130,25 @@ export class NuevoInmuebleComponent {
           console.log(this.imagenes)
         }
       }
-      this.ApiInmueble.cargarImagen(this.imagenes).subscribe((Response: imagen_inmueble) => console.log(Response));
+      this.ApiInmueble.cargarImagen(this.imagenes).subscribe((Response: any) => {
+        console.log(Response.success);
+        if (Response.success) {
+          this.abrirModal();
+        }
+      })
+
+    }else{
+      this.abrirModal();
     }
+  }
+  abrirModal(){
+    const x = this.modal.open(ModalYaConfirmadoComponent, {});
+    x.componentInstance.datos = {
+      titulo: 'Exito!!', cuerpo: 'Se ha dado de alta nuevo inmueble'
+    }
+    x.closed.subscribe(data => {
+      this.limpiarCampos();
+    })
   }
 
   bandera: number = 0;
@@ -182,16 +204,34 @@ export class NuevoInmuebleComponent {
     })
   }
 
-  tipo_inm : tipo_inmueble[] = [];
+  tipo_inm: tipo_inmueble[] = [];
 
-  listarTipoInmue(){
-    this.ApiInmueble.listar_tipoInmueble().subscribe(data=>{
-      data.tipo.forEach((t: tipo_inmueble)=>{
+  listarTipoInmue() {
+    this.ApiInmueble.listar_tipoInmueble().subscribe(data => {
+      data.tipo.forEach((t: tipo_inmueble) => {
         this.tipo_inm.push(new tipo_inmueble(t))
       })
       //console.log(this.tipo_inm)
     })
   }
+
+  //@ViewChild('formFileSm') fileInput:ElementRef;
+  @ViewChild('formFileSm', { static: false }) fileInput: ElementRef; 
+
+  limpiarCampos(){    
+  this.model = new inmueble({
+    id_tipoInmueble: null, id_motivo: null, fecha_ingreso: this.dateToday, antiguedad: null,
+    calle: null, numero: 0, id_ciudad: null, patio: false, cochera: false, balcon: false, terraza: false, pileta: false,
+    lavadero: false, living: false, ascensor: false, aire_acond: false, comedor: false, cocina: false, amoblado: false,
+    cloaca: false, cant_banios: 0, cant_habit: 0, observaciones: '', nombre: null, apellido: null, dni: null,
+    telefono: null, fecha_nac: null, email: null, agua: false, calefaccion: false, gas: false, estado: 'alta', luz: false,
+    id_propietario: null, costo_inicial: null, id_moneda: null
+  })
+  //this.fileInput.nativeElement.value = null;
+  }
+  
+
+ 
 
 }
 

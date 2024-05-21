@@ -9,6 +9,7 @@ import { tipoMotivo } from 'src/app/models/tipo_motivo';
 import { propietario } from 'src/app/models/propietario';
 import { imagen_inmueble } from 'src/app/models/imagen_inmueble';
 import { ApiImagen } from 'src/app/service/api.imagen';
+import { findIndex, identity } from 'rxjs';
 
 
 @Component({
@@ -23,16 +24,17 @@ export class DetalleInmuebleComponent {
   @Input() id_inmueble: any = null;
   @Input() inmuebles_alquiler: any[];
   @Input() img_inmue: any[];
+  @Input() estado_inm: any = null;
 
   @Output() volver = new EventEmitter<boolean>();
   bandera: boolean = true;
-  inmueb: inmueble = new inmueble({});
+  inmueb: inmueble = new inmueble({ cant_banios: 0, cant_habit: 0 });
   editable: boolean = true;
   nombreBoton: string = 'Editar';
   tipo_inmuebles: tipo_inmueble[] = [];
   listCiudad: ciudad[] = [];
   listMoneda: moneda[] = [];
-  listMotivos: tipoMotivo[] = []; 
+  listMotivos: tipoMotivo[] = [];
   date: string = '';
   propietarios: propietario[] = [];
   result: any = null;
@@ -42,6 +44,8 @@ export class DetalleInmuebleComponent {
   imagen: imagen_inmueble = new imagen_inmueble({});
   array_img: any[] = [];
   personasMap: any[] = []
+  habilitar: boolean = false;
+  estado: any;
 
   back() {
     this.volver.emit(this.bandera)
@@ -57,11 +61,22 @@ export class DetalleInmuebleComponent {
     this.listarPropietarios();
     // this.listarImgxID();
     this.filtrarIMG();
+    this.cargarDato();
+  }
+
+  cargarDato() {
+    this.estado = this.estado_inm
+    if (this.estado == 'BAJA') {
+      this.habilitarAlerta()
+    }
+  }
+  habilitarAlerta() {
+    this.habilitar = true;
   }
 
   verInmuebles() {
     console.log(this.inmuebles_alquiler);
-  } 
+  }
 
   @ViewChild("myModalInfo", { static: false }) myModalInfo: TemplateRef<any>;
   nombre_img: string = '';
@@ -71,10 +86,15 @@ export class DetalleInmuebleComponent {
     this.nombre_img = imagen
     this.modalService.open(this.myModalInfo);
   }
-  
-  openXl(content: TemplateRef<any>, imagen: string) {
+
+  /*   openXl(content: TemplateRef<any>, imagen: string) {
+      this.modalService.open(content, { size: 'xl' });
+      this.nombre_img = imagen
+    } */
+  posic: number;
+  openXl(content: TemplateRef<any>, pos: number) {
     this.modalService.open(content, { size: 'xl' });
-    this.nombre_img = imagen
+    this.posic = pos
   }
 
   listarDatosInmueble() {
@@ -85,6 +105,20 @@ export class DetalleInmuebleComponent {
       })
       console.log(this.inmueb)
     })
+  }
+  operador: string;
+  cambiarImagen(op: string) {
+    console.log(this.posic)
+    if (op == 'sumar') {
+      this.posic++;
+      console.log('suma')
+      console.log(this.posic)
+    } else {
+      this.posic--;
+      
+      console.log('restar')
+      console.log(this.posic)
+    }
   }
 
   /* listarImgxID(){
@@ -112,34 +146,45 @@ export class DetalleInmuebleComponent {
       this.nombreBoton = 'Guardar'
     }
   }
-  muestra : any;
+  muestra: any;
   updateInmueble() {
-    console.log(this.inmueb.id_propietario)
-     this.ApiInmueble.updateInmueble(this.inmueb).subscribe((Response: any) => {
+    console.log(this.inmueb)
+    if (this.inmueb.cant_banios == null) {
+      this.inmueb.cant_banios = 0
+    }
+    if (this.inmueb.cant_habit == null) {
+      this.inmueb.cant_habit = 0
+    }
+    this.ApiInmueble.updateInmueble(this.inmueb).subscribe((Response: any) => {
       console.log(Response)
-      if(Response.success){
+      if (Response.success) {
         this.listarDatosInmueble()
       }
-    }) 
+    })
   }
+  index: number = 0;
 
   filtrarIMG() {
     this.apiImagen.listarImagenes_porID(this.id_inmueble).subscribe(data => {
       data.imagen.forEach((img: imagen_inmueble) => {
         this.img_inmuee.push(new imagen_inmueble(img))
       })
+      for (let i of this.img_inmuee) {
+        this.img_inmuee[this.index].posicion = this.index;
+        this.index++;
+      }
       console.log(this.img_inmuee)
     })
   }
 
- /*  encontrarIdPropietario(dni: number) {
-    this.result = this.propietarios.filter((prop) => prop.dni == dni);
-
-    this.result.forEach((prop: any) => {
-      this.id_propietario = prop.id_propietario
-    })
-    this.inmueb.id_propietario = this.id_propietario
-  } */
+  /*  encontrarIdPropietario(dni: number) {
+     this.result = this.propietarios.filter((prop) => prop.dni == dni);
+ 
+     this.result.forEach((prop: any) => {
+       this.id_propietario = prop.id_propietario
+     })
+     this.inmueb.id_propietario = this.id_propietario
+   } */
 
   noEditable(event: Event) {
     if (this.editable == true) {
@@ -190,7 +235,7 @@ export class DetalleInmuebleComponent {
     })
   }
 
-  
+
   /*
 console.log(this.img_inmue)
 

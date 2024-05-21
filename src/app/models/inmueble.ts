@@ -56,6 +56,7 @@ export class inmueble {
    imagen: imagen_inmueble
     primer_imagen: string
     colorEstado: string
+    colorLetra : string
     ruta : string
     nombreArchivo : string
 
@@ -115,6 +116,7 @@ export class inmueble {
         this.colorEstado = inmue.colorEstado || ''
         this.ruta = inmue.ruta || ''
         this.nombreArchivo = this.convertirNombreArchivo(this.ruta) || null
+        this.colorLetra = inmue.colorLetra || null
     }
 
     variable: string = '';

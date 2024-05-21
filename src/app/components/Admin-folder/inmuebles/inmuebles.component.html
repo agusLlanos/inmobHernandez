@@ -75,19 +75,19 @@
               </thead>
               <tbody>
                 <tr *ngFor="let inm of inmuebles">
-                  <td><i class="fa-solid fa-eye" style="color: #0a4d27;" title="Ver detalle" (click)="verDetalle(inm.id_inmueble)"></i></td>
-                  <td>{{inm.id_inmueble}}</td>
-                  <td>{{inm.tipo_inmueble}}</td>
-                  <td>{{inm.motivo}}</td>
-                  <td>{{inm.propietario}}</td>
-                  <td>{{inm.direccion}}</td>
-                  <td>{{inm.ciudad}}</td>
-                  <td>{{inm.fechaIngreso_muestra}}</td>
+                  <td><i class="fa-solid fa-eye" style="color: #0a4d27;" title="Ver detalle" (click)="verDetalle(inm.id_inmueble, inm.estado)"></i></td>
+                  <td [class]="inm.colorLetra">{{inm.id_inmueble}}</td>
+                  <td [class]="inm.colorLetra">{{inm.tipo_inmueble}}</td>
+                  <td [class]="inm.colorLetra">{{inm.motivo}}</td>
+                  <td [class]="inm.colorLetra">{{inm.propietario}}</td>
+                  <td [class]="inm.colorLetra">{{inm.direccion}}</td>
+                  <td [class]="inm.colorLetra">{{inm.ciudad}}</td>
+                  <td [class]="inm.colorLetra">{{inm.fechaIngreso_muestra}}</td>
                   <td [class]="inm.colorEstado">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
                         [checked]="inm.id_estado" (change)="openModalAviso(inm.id_inmueble, inm.estado)">
-                      <label class="form-check-label" for="flexSwitchCheckChecked">{{inm.estado}}</label>
+                      <label class="form-check-label fw-bold" for="flexSwitchCheckChecked">{{inm.estado}}</label>
                     </div>
                   </td>
                   <!--  <td>                   
@@ -106,5 +106,5 @@
   </section>
 </ng-container>
 <ng-template #variable>
-  <app-detalle-inmueble (volver)="volver($event)" [id_inmueble]="id_seleccionado"></app-detalle-inmueble>
+  <app-detalle-inmueble (volver)="volver($event)" [id_inmueble]="id_seleccionado" [estado_inm]="estado_inm"></app-detalle-inmueble>
 </ng-template>
